@@ -3,7 +3,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'IIC OMS 매뉴얼',
+  title: 'IIC OMS DOCS',
   tagline: 'IIC OMS 운영 매뉴얼 — 주문, 출고, 반품, 교환, 재고 관리를 위한 통합 가이드',
   favicon: 'img/favicon.ico',
 
@@ -59,7 +59,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'IIC OMS 매뉴얼',
+        title: 'OMS 매뉴얼',
         logo: {
           alt: 'IIC OMS Logo',
           src: 'img/iic-logo.png',
@@ -71,16 +71,6 @@ const config = {
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: '문서',
-          },
-          {
-            to: '/docs/tutorials/overview',
-            label: '튜토리얼',
-            position: 'left',
-          },
-          {
-            to: '/docs/reference/status-codes',
-            label: '레퍼런스',
-            position: 'left',
           },
           {
             type: 'localeDropdown',
@@ -135,7 +125,7 @@ const config = {
             items: [
               {
                 label: '변경 이력',
-                to: '/docs/ops/changelog',
+                to: '/docs/changelog',
               },
               {
                 label: 'GitHub',

@@ -29,9 +29,6 @@ function HeroSection() {
           <Link className={styles.btnPrimary} to="/docs/">
             시작하기 →
           </Link>
-          <Link className={styles.btnSecondary} to="/docs/tutorials/overview">
-            튜토리얼 보기
-          </Link>
         </div>
       </div>
     </header>
@@ -63,47 +60,6 @@ const mainFeatures = [
     description: '재고 조회, 필터링, 수량 조정 및 동기화',
     link: '/docs/how-to/inventory-search-filter-adjust',
   },
-];
-
-const guideCategories = [
-  {
-    title: '튜토리얼',
-    description: '단계별 학습 가이드',
-    items: [
-      { label: 'OMS 개요', to: '/docs/tutorials/overview' },
-      { label: '단건 주문 처리', to: '/docs/tutorials/process-single-order' },
-      { label: '단건 클레임 처리', to: '/docs/tutorials/process-single-claim' },
-    ],
-  },
-  {
-    title: '실무 시나리오',
-    description: '실제 운영 사례 모음',
-    items: [
-      { label: '배송 분실', to: '/docs/use-cases/delivery-lost' },
-      { label: '수거 거부 & 재발송', to: '/docs/use-cases/shipment-rejection-reshipment' },
-      { label: '부분 출고', to: '/docs/use-cases/partial-shipment-split-delivery' },
-      { label: '매장 수령', to: '/docs/use-cases/store-pickup' },
-      { label: '교환 시나리오', to: '/docs/use-cases/exchange-scenarios' },
-      { label: '재고 불일치', to: '/docs/use-cases/inventory-mismatch-sync-delay' },
-    ],
-  },
-  {
-    title: '레퍼런스',
-    description: '상세 참조 문서',
-    items: [
-      { label: '상태 코드', to: '/docs/reference/status-codes' },
-      { label: '필드 정의', to: '/docs/reference/field-definitions' },
-      { label: '에러 메시지', to: '/docs/reference/error-messages' },
-      { label: '용어 사전', to: '/docs/glossary' },
-    ],
-  },
-];
-
-const quickLinks = [
-  { label: '상태 전이 규칙', to: '/docs/explanation/state-transition-rules' },
-  { label: '운영 정책', to: '/docs/explanation/policies' },
-  { label: '변경 이력', to: '/docs/ops/changelog' },
-  { label: '클레임 등록', to: '/docs/how-to/register-claim' },
 ];
 
 function FeatureCard({title, icon, description, link}) {
@@ -153,39 +109,6 @@ export default function Home() {
             <div className={styles.featureGrid}>
               {mainFeatures.map((feature, idx) => (
                 <FeatureCard key={idx} {...feature} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Guide Categories */}
-        <section className={clsx(styles.section, styles.sectionAlt)}>
-          <div className={styles.container}>
-            <Heading as="h2" className={styles.sectionTitle}>
-              문서 카테고리
-            </Heading>
-            <p className={styles.sectionDesc}>
-              목적에 맞는 문서를 빠르게 찾아보세요
-            </p>
-            <div className={styles.guideGrid}>
-              {guideCategories.map((cat, idx) => (
-                <GuideSection key={idx} {...cat} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Quick Links */}
-        <section className={styles.section}>
-          <div className={styles.container}>
-            <Heading as="h2" className={styles.sectionTitle}>
-              추가 리소스
-            </Heading>
-            <div className={styles.quickLinks}>
-              {quickLinks.map((link, idx) => (
-                <Link key={idx} to={link.to} className={styles.quickLink}>
-                  {link.label} →
-                </Link>
               ))}
             </div>
           </div>
