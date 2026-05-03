@@ -1,11 +1,87 @@
-import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
-function HeroSection() {
+const homeContent = {
+  ko: {
+    pageTitle: '홈',
+    metaDescription: 'IIC OMS 운영 매뉴얼 — 주문, 출고, 반품, 교환, 재고 관리',
+    heroSubtitle: '주문, 출고, 반품, 교환, 재고 관리를 위한 통합 운영 매뉴얼',
+    getStarted: '시작하기 →',
+    sectionTitle: '주요 기능',
+    sectionDescription: 'OMS의 핵심 기능별 사용 가이드를 확인하세요',
+    mainFeatures: [
+      {
+        title: '주문 관리',
+        icon: '📦',
+        description: '주문 조회, 필터링, 상태 관리 및 엑셀 다운로드',
+        link: '/docs/how-to/order-search-filter-download',
+      },
+      {
+        title: '출고 관리',
+        icon: '🚚',
+        description: '출고 요청, 부분 출고, 배송 추적 및 취소 처리',
+        link: '/docs/how-to/cancel-shipment-partial-shipment',
+      },
+      {
+        title: '반품/교환',
+        icon: '🔄',
+        description: '반품 승인/거부, 교환 처리, 환불 관리',
+        link: '/docs/how-to/return-approve-reject-refund',
+      },
+      {
+        title: '재고 관리',
+        icon: '📊',
+        description: '재고 조회, 필터링, 수량 조정 및 동기화',
+        link: '/docs/how-to/inventory-search-filter-adjust',
+      },
+    ],
+  },
+  en: {
+    pageTitle: 'Home',
+    metaDescription:
+      'IIC OMS operations manual for orders, shipments, returns, exchanges, and inventory management',
+    heroSubtitle:
+      'An integrated operations manual for orders, shipments, returns, exchanges, and inventory management',
+    getStarted: 'Get started →',
+    sectionTitle: 'Key Features',
+    sectionDescription: 'Browse guides for core OMS workflows.',
+    mainFeatures: [
+      {
+        title: 'Order Management',
+        icon: '📦',
+        description: 'Search and filter orders, manage statuses, and download Excel files',
+        link: '/docs/how-to/order-search-filter-download',
+      },
+      {
+        title: 'Shipment Management',
+        icon: '🚚',
+        description: 'Request shipments, process partial shipments, track deliveries, and cancel shipments',
+        link: '/docs/how-to/cancel-shipment-partial-shipment',
+      },
+      {
+        title: 'Returns/Exchanges',
+        icon: '🔄',
+        description: 'Approve or reject returns, process exchanges, and manage refunds',
+        link: '/docs/how-to/return-approve-reject-refund',
+      },
+      {
+        title: 'Inventory Management',
+        icon: '📊',
+        description: 'Search and filter inventory, adjust quantities, and sync stock',
+        link: '/docs/how-to/inventory-search-filter-adjust',
+      },
+    ],
+  },
+};
+
+function getHomeContent(locale) {
+  return homeContent[locale] ?? homeContent.ko;
+}
+
+function HeroSection({content}) {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={styles.hero}>
@@ -23,44 +99,17 @@ function HeroSection() {
           {siteConfig.title}
         </Heading>
         <p className={styles.heroSubtitle}>
-          주문, 출고, 반품, 교환, 재고 관리를 위한 통합 운영 매뉴얼
+          {content.heroSubtitle}
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.btnPrimary} to="/docs/">
-            시작하기 →
+            {content.getStarted}
           </Link>
         </div>
       </div>
     </header>
   );
 }
-
-const mainFeatures = [
-  {
-    title: '주문 관리',
-    icon: '📦',
-    description: '주문 조회, 필터링, 상태 관리 및 엑셀 다운로드',
-    link: '/docs/how-to/order-search-filter-download',
-  },
-  {
-    title: '출고 관리',
-    icon: '🚚',
-    description: '출고 요청, 부분 출고, 배송 추적 및 취소 처리',
-    link: '/docs/how-to/cancel-shipment-partial-shipment',
-  },
-  {
-    title: '반품/교환',
-    icon: '🔄',
-    description: '반품 승인/거부, 교환 처리, 환불 관리',
-    link: '/docs/how-to/return-approve-reject-refund',
-  },
-  {
-    title: '재고 관리',
-    icon: '📊',
-    description: '재고 조회, 필터링, 수량 조정 및 동기화',
-    link: '/docs/how-to/inventory-search-filter-adjust',
-  },
-];
 
 function FeatureCard({title, icon, description, link}) {
   return (
@@ -90,24 +139,26 @@ function GuideSection({title, description, items}) {
 }
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
+  const {i18n} = useDocusaurusContext();
+  const content = getHomeContent(i18n.currentLocale);
+
   return (
     <Layout
-      title="홈"
-      description="IIC OMS 운영 매뉴얼 — 주문, 출고, 반품, 교환, 재고 관리">
-      <HeroSection />
+      title={content.pageTitle}
+      description={content.metaDescription}>
+      <HeroSection content={content} />
       <main className={styles.main}>
         {/* Main Feature Cards */}
         <section className={styles.section}>
           <div className={styles.container}>
             <Heading as="h2" className={styles.sectionTitle}>
-              주요 기능
+              {content.sectionTitle}
             </Heading>
             <p className={styles.sectionDesc}>
-              OMS의 핵심 기능별 사용 가이드를 확인하세요
+              {content.sectionDescription}
             </p>
             <div className={styles.featureGrid}>
-              {mainFeatures.map((feature, idx) => (
+              {content.mainFeatures.map((feature, idx) => (
                 <FeatureCard key={idx} {...feature} />
               ))}
             </div>

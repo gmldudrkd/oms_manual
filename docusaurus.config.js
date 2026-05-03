@@ -94,10 +94,6 @@ const config = {
                 to: '/docs/',
               },
               {
-                label: '튜토리얼',
-                to: '/docs/tutorials/overview',
-              },
-              {
                 label: '사용 가이드',
                 to: '/docs/how-to/order-search-filter-download',
               },
@@ -125,7 +121,7 @@ const config = {
             items: [
               {
                 label: '변경 이력',
-                to: '/docs/changelog',
+                to: '/docs/changelog/26-03-25',
               },
               {
                 label: 'GitHub',
