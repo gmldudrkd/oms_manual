@@ -16,8 +16,8 @@ const config = {
     v4: true,
   },
 
-  url: 'https://your-docusaurus-site.example.com',
-  baseUrl: '/',
+  url: 'https://gmldudrkd.github.io',
+  baseUrl: '/oms_manual/',
 
   organizationName: 'gmldudrkd',
   projectName: 'oms_manual',
