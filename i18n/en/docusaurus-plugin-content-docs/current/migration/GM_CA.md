@@ -350,10 +350,6 @@ Because stock moved within ERP can now be received immediately, the Placeholder 
 
 - Feature definition: Sets whether stock is sent to the channel during channel distribution after end-of-day stock is received.
 
-> Existing System
-
-ADD_IMAGE_HERE
-
 > New System
 
 #### 📹 <a href="https://drive.google.com/file/d/1WNKHbfG5H3xsoIh-0b5uxPVFX7Ows-rs/view?usp=sharing" target="_blank" rel="noopener noreferrer">View guide video</a>
