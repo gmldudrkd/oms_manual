@@ -1,4 +1,5 @@
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -81,7 +82,7 @@ function HeroSection({content}) {
       </div>
       <div className={styles.heroContent}>
         <img
-          src="/img/iic-logo.png"
+          src={useBaseUrl('/img/iic-logo.png')}
           alt="IIC Logo"
           className={styles.heroLogo}
         />

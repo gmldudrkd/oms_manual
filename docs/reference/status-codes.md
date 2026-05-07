@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+unlisted: true
 ---
 
 # 상태값 / 코드표

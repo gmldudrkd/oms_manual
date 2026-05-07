@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+unlisted: true
 ---
 
 # 클레임 등록

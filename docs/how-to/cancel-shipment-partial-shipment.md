@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+unlisted: true
 ---
 
 # 출고 취소 / 부분출고
