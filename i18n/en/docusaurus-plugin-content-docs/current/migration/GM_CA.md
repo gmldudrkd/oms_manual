@@ -250,7 +250,9 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 - After selecting the LOST button and clicking Confirm, the status immediately changes to Lost.
 - If Force Refund or Reshipment was not processed on the next screen, it must be handled through Register Claim with Lost selected as the reason.
 
-#### 📹 <a href="https://drive.google.com/file/d/11ThdwHfmMm2cLGewoud1nspeVuF64vDg/view?usp=sharing" target="_blank" rel="noopener noreferrer">View guide video</a>
+#### 📹 <a href="https://drive.google.com/file/d/11ThdwHfmMm2cLGewoud1nspeVuF64vDg/view?usp=sharing" target="_blank" rel="noopener noreferrer">Shipment Lost Guide video</a>
+
+#### 📹 <a href="https://drive.google.com/file/d/1_5o1i7pWLg2P-DraM0YeY7tgORyV0y7r/view?usp=sharing" target="_blank" rel="noopener noreferrer">Return Lost Guide video</a>
 
 ---
 
