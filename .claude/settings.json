@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"ko: %{http_code}\\\\n\" http://localhost:3003/docs/)",
+      "Bash(curl -s -o /dev/null -w \"en: %{http_code}\\\\n\" http://localhost:3003/en/docs/)",
+      "Bash(curl -s -o /dev/null -w \"ko: %{http_code}\\\\nen: %{http_code}\\\\n\" http://localhost:3003/docs/ http://localhost:3003/en/docs/)",
+      "Bash(curl -s -o /dev/null -w \"ko: %{http_code}\\\\nen: %{http_code}\\\\n\" http://localhost:3003/docs/migration/GM_CA http://localhost:3003/en/docs/migration/GM_CA)"
+    ]
+  }
+}

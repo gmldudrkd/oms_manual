@@ -75,13 +75,9 @@ There is also a Timezone dropdown. When working with overseas entities, you can 
 1. Order-related information that was previously shown together in Order Detail is now separated into tabs.
 2. Detailed order, claim, and log information can be viewed by tab.
 
-> Existing System
-
-ADD_IMAGE_HERE
-
 > New System
 
-ADD_IMAGE_HERE
+![GM OMS Overview](/img/iic_oms_order_detail.png)
 
 
 ### Return, Exchange, Reshipment List
@@ -91,15 +87,10 @@ ADD_IMAGE_HERE
 
 #### ✅ Changes
 1. Return, exchange, and reshipment cases that were previously checked together in General Orders are now separated into a dedicated list.
-2. Reshipment cannot be set up when there is no stock.
-
-> Existing System
-
-ADD_IMAGE_HERE
 
 > New System
 
-ADD_IMAGE_HERE
+![GM OMS Overview](/img/iic_oms_list.png)
 
 ### Export
 #### ✅ Changes
@@ -107,11 +98,11 @@ ADD_IMAGE_HERE
 
 > Existing System
 
-ADD_IMAGE_HERE
+![GM OMS Overview](/img/gm_oms_export.png)
 
 > New System
 
-ADD_IMAGE_HERE
+![GM OMS Overview](/img/iic_oms_export.png)
 
 ---
 
@@ -160,11 +151,36 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 
 
 ### Claim Status Comparison (Legacy vs New)
-:::warning
-Add here.
-:::
+> Return
+
+| Legacy | New | Description |
+|--------|------------|-----|
+| ReqReturn | **Pending** | Return request completed |
+| ReqPickup | **Pickup Requested** | Return intake in progress |
+| Pickup | **Pickup Ongoing** | Pickup in progress |
+| Receive | **Received** | Awaiting receipt confirmation |
+| Refund | **Refund** | Received; customer refunded |
+
+> Exchange
+> In the new system, reshipment is processed automatically after Inspected.
+
+| Legacy | New | Description |
+|--------|------------|-----|
+| Req-Exchange | **Pending** | Return request completed |
+| Exch-ReqPickup | **Pickup Requested** | Return intake in progress |
+| Exch-Pickup | **Pickup Ongoing** | Pickup in progress |
+| Exch-Return | **Received** | Awaiting receipt confirmation |
+| Exchange | **Inspected** | Received; before reshipment |
+
 
 👉 For more details about order status codes, refer to the [Status Codes](/docs/reference/status-codes) document.
+
+### RX Status
+#### ✅ Changes
+- Receives RX Confirm/Reject from BO
+- After completion, the tracking number is tracked during customer delivery and the status is updated to Delivered
+
+![GM OMS Overview](/img/iic_oms_rx.png)
 
 ---
 
