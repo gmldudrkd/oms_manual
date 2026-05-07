@@ -42,6 +42,12 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl:
             'https://github.com/gmldudrkd/oms_manual/tree/main/',
+          exclude: [
+            'intro.md',
+            'how-to/**',
+            'reference/**',
+            'use-cases/**',
+          ],
         },
         blog: false,
         theme: {
@@ -67,10 +73,14 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            to: '/docs/migration/GM_CA',
             position: 'left',
-            label: '문서',
+            label: 'Migration',
+          },
+          {
+            to: '/docs/changelog/26-03-25',
+            position: 'left',
+            label: 'Changelog',
           },
           {
             type: 'localeDropdown',
@@ -87,32 +97,15 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: '문서',
+            title: 'Migration',
             items: [
               {
-                label: '시작하기',
-                to: '/docs/',
+                label: '26.05.07 Core Operations',
+                to: '/docs/migration/GM_CA',
               },
               {
-                label: '사용 가이드',
-                to: '/docs/how-to/order-search-filter-download',
-              },
-            ],
-          },
-          {
-            title: '레퍼런스',
-            items: [
-              {
-                label: '상태 코드',
-                to: '/docs/reference/status-codes',
-              },
-              {
-                label: '필드 정의',
-                to: '/docs/reference/field-definitions',
-              },
-              {
-                label: '에러 메시지',
-                to: '/docs/reference/error-messages',
+                label: '26.05.11 New Features',
+                to: '/docs/migration/GM_US',
               },
             ],
           },
