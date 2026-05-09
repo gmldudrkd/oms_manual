@@ -64,11 +64,21 @@ sidebar_position: 2
         - **`(Distributed Qty + pre-order Qty) - (Used Qty + Shipped Qty)`**
 
 :::note
-The new system includes a pre-order feature, but because this Veggie Collection launch includes store pickup, the feature will not be used for this launch.
+For this Veggie Collection launch, this feature cannot be used because store pickup is included.
+The reason is that pre-order is designed on the assumption that there is no outbound shipment before launch — only sold quantities are deducted in management.
+However, store pickup requires moving stock to stores before launch, and this movement is treated the same as an outbound shipment, so the quantity disappears from the calculation when Shipped is reset the next day.
+As a result, more pre-order stock appears to remain than actually exists, creating an overselling risk.
 
-The reason is that the current pre-order feature operates based on ERP online warehouse stock, while store pickup also requires managing stock movement from the online warehouse to the store after an order is placed. In this process, operators have to continuously match pre-order quantities with actual store outbound quantities manually, which carries a high risk of operational confusion, human error, and overselling.
+Therefore, in this launch we prioritize stable operations and continue with the existing approach. Applying the Pre-order feature will be reconsidered after the system is enhanced in the future.
 
-Therefore, in this launch we prioritize stable operations and continue with the existing approach. Applying pre-order to store pickup will be reconsidered after the system is enhanced in the future.
+[Example]
+1. Pre-order quantity: 100 units
+2. Pre-order sales: 80 units (20 via store pickup)
+3. 20 units pre-moved to stores (treated as Shipped Qty)
+4. The next day, when end-of-day stock is received, the 20 units reset to 0
+5. Pre-order sales appear as if only 60 units were sold
+    - **`(Distributed Qty + Pre-order Qty) - (Used Qty + Shipped Qty)`**
+    - ( 0 + 100 ) - ( 60 + 0 )
 :::
 
 ## 🛍️ Store pickup
