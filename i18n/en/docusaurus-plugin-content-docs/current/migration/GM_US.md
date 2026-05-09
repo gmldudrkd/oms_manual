@@ -38,15 +38,6 @@ sidebar_position: 2
 #### ✅ Feature Definition
 - Use this feature when you want to start selling a product before physical stock is on hand, when stock arrival is guaranteed.
 
-:::note
-The new system includes a pre-order feature, but because this Veggie Collection launch includes store pickup, the feature will not be used for this launch.
-
-The reason is that the current pre-order feature operates based on ERP online warehouse stock, while store pickup also requires managing stock movement from the online warehouse to the store after an order is placed. In this process, operators have to continuously match pre-order quantities with actual store outbound quantities manually, which carries a high risk of operational confusion, human error, and overselling.
-
-Therefore, in this launch we prioritize stable operations and continue with the existing approach. Applying pre-order to store pickup will be reconsidered after the system is enhanced in the future.
-:::
-
-
 #### ✅ Feature Location
 - Stock > Online Stock Setting tab > 'Pre-order Setting' button
 #### ✅ Available Search and Product Conditions
@@ -72,9 +63,13 @@ Therefore, in this launch we prioritize stable operations and continue with the 
     - The pre-order quantity can be edited starting from 0. **When saved after editing, it is sent again using the same formula.**
         - **`(Distributed Qty + pre-order Qty) - (Used Qty + Shipped Qty)`**
 
-<!-- <video controls width="100%">
-  <source src="ADD_VIDEO_HERE" type="video/mp4" />
-</video> -->
+:::note
+The new system includes a pre-order feature, but because this Veggie Collection launch includes store pickup, the feature will not be used for this launch.
+
+The reason is that the current pre-order feature operates based on ERP online warehouse stock, while store pickup also requires managing stock movement from the online warehouse to the store after an order is placed. In this process, operators have to continuously match pre-order quantities with actual store outbound quantities manually, which carries a high risk of operational confusion, human error, and overselling.
+
+Therefore, in this launch we prioritize stable operations and continue with the existing approach. Applying pre-order to store pickup will be reconsidered after the system is enhanced in the future.
+:::
 
 ## 🛍️ Store pickup
 > A feature where customers purchase products online and pick them up directly at a store.
