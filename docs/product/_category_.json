@@ -1,0 +1,8 @@
+{
+  "label": "상품 (Product)",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "상품 마스터 조회·수정, 번들 생성, 일괄 업로드, 채널별 상품 노출 상태를 다룹니다."
+  }
+}

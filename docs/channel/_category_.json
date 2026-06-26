@@ -1,0 +1,8 @@
+{
+  "label": "채널 (Channel)",
+  "position": 6,
+  "link": {
+    "type": "generated-index",
+    "description": "판매 채널 목록 조회, 신규 채널 등록, 채널 설정 변경을 다룹니다."
+  }
+}

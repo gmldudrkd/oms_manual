@@ -1,4 +1,5 @@
 {
-  "label": "Use Cases",
-  "position": 4
+  "label": "Common Situations",
+  "position": 6.7,
+  "link": { "type": "generated-index", "description": "Scenario-based guides for situations you frequently face: lost delivery, mis-shipment, partial inspection refund, stock mismatch, and more." }
 }

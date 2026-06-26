@@ -42,22 +42,6 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl:
             'https://github.com/gmldudrkd/oms_manual/tree/main/',
-          exclude: [
-            'intro.md',
-            'how-to/channel-management.md',
-            'how-to/dashboard.md',
-            'how-to/exchange-approve-reject-shipment.md',
-            'how-to/inventory-search-filter-adjust.md',
-            'how-to/order-search-filter-download.md',
-            'how-to/reshipment-management.md',
-            'how-to/return-approve-reject-refund.md',
-            'how-to/shipment-tracking.md',
-            'how-to/store-pickup-management.md',
-            'reference/brands-channels.md',
-            'reference/error-messages.md',
-            'reference/field-definitions.md',
-            'use-cases/**',
-          ],
         },
         blog: false,
         theme: {

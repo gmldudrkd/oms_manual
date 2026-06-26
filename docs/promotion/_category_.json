@@ -1,0 +1,8 @@
+{
+  "label": "프로모션 (Promotion)",
+  "position": 6.3,
+  "link": {
+    "type": "generated-index",
+    "description": "GWP·패키징 혜택 등 프로모션 등록·수정·조회와 트리거/리워드 설정을 다룹니다."
+  }
+}

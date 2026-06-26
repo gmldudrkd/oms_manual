@@ -1,4 +1,5 @@
 {
   "label": "Reference",
-  "position": 5
+  "position": 6.9,
+  "link": { "type": "generated-index", "description": "Status codes, field definitions, error messages, and brand/channel lists." }
 }

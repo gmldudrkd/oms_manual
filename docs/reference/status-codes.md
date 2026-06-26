@@ -1,189 +1,105 @@
 ---
 sidebar_position: 1
-unlisted: true
 ---
 
-# 상태값 / 코드표
+# 상태 코드표 (Status Guide)
 
-## 주문 상태 코드표
-
-```mermaid
-stateDiagram-v2
-    [*] --> PENDING: 주문 수신
-
-    PENDING --> COLLECTED: 주문 확정
-    PENDING --> CANCELED: 주문 취소
-    PENDING --> DELETED: 주문 삭제
-
-    COLLECTED --> PARTLY_CONFIRMED: 부분 확정
-    COLLECTED --> SHIPMENT_REQUESTED: 출고 요청
-    COLLECTED --> CANCELED: 주문 취소
-
-    PARTLY_CONFIRMED --> PARTIAL_SHIPMENT_REQUESTED: 부분 출고 요청
-    PARTLY_CONFIRMED --> SHIPMENT_REQUESTED: 전체 출고 요청
-    PARTLY_CONFIRMED --> CANCELED: 주문 취소
-
-    PARTIAL_SHIPMENT_REQUESTED --> SHIPMENT_REQUESTED: 전체 출고 요청
-    PARTIAL_SHIPMENT_REQUESTED --> CANCELED: 주문 취소
-
-    SHIPMENT_REQUESTED --> COMPLETED: 배송 완료
-    SHIPMENT_REQUESTED --> CANCELED: 주문 취소
-
-    CANCELED --> COMPLETED: 완료 처리
-
-    COMPLETED --> [*]
-    DELETED --> [*]
-```
-
-| 상태 | 코드 | 설명 | 가능한 작업 |
-|------|------|------|-----------|
-| 대기 | PENDING | 주문 수신, 확정 전 | 확정, 취소, 삭제, 수령인 변경 |
-| 확정 | COLLECTED | 주문 확정, 재고 할당 진행 | 출고 요청, 취소, 수령인 변경 |
-| 부분 확정 | PARTLY_CONFIRMED | 일부 상품만 재고 할당 | 부분 출고, 전체 출고, 취소, 수령인 변경 |
-| 부분 출고 요청 | PARTIAL_SHIPMENT_REQUESTED | 일부 상품만 출고 요청 | 전체 출고 요청, 취소 |
-| 출고 요청 | SHIPMENT_REQUESTED | 전체 상품 출고 요청 | 완료, 취소 |
-| 취소 | CANCELED | 주문 취소됨 | 완료 처리 |
-| 완료 | COMPLETED | 주문 최종 완료 | - |
-| 삭제 | DELETED | 주문 삭제 (PENDING에서만) | - |
-
-### 상태 그룹
-
-| 그룹 | 포함 상태 | 설명 |
-|------|-----------|------|
-| 대기 | PENDING | 아직 확정되지 않은 주문 |
-| 진행 중 | COLLECTED, PARTLY_CONFIRMED, PARTIAL_SHIPMENT_REQUESTED, SHIPMENT_REQUESTED | 처리가 진행 중인 주문 |
-| 출고 진행 중 | PARTIAL_SHIPMENT_REQUESTED, SHIPMENT_REQUESTED | 출고 단계에 있는 주문 |
-| 최종 완료 | COMPLETED, DELETED, CANCELED | 더 이상 상태 전이가 불가능한 주문 |
+OMS의 모든 작업은 **현재 상태에서 무엇이 가능한지**에 따라 결정됩니다. 이 표는 주문·출고·매장픽업·반품·교환·재출고 각 상태의 의미와 가능한 작업을 정리한 것으로, 화면의 **Status Guide**와 동일한 기준입니다.
 
 ---
 
-## 출고 상태 코드표
+## 주문 (Order)
 
-| 상태 | 코드 | 설명 | 가능한 전이 |
-|------|------|------|-----------|
-| 피킹 요청 | PICKING_REQUESTED | WMS에 상품 피킹 요청 | PICKED, PACKED, SHIPPED, DELIVERED, PICKING_REJECTED, CANCELED |
-| 피킹 완료 | PICKED | 상품이 선반에서 꺼내짐 | PACKED, SHIPPED, DELIVERED, PICKING_REJECTED, CANCELED |
-| 포장 완료 | PACKED | 상품 포장 완료 | SHIPPED, DELIVERED, PICKING_REJECTED, CANCELED |
-| 배송 중 | SHIPPED | 배송업체에 인도됨 | DELIVERED, LOST |
-| 배송 완료 | DELIVERED | 고객에게 전달 완료 (최종) | - |
-| 피킹 거절 | PICKING_REJECTED | 재고 부족 등으로 피킹 불가 (최종) | - |
-| 취소 | CANCELED | 출고 취소 (최종) | - |
-| 분실 | LOST | 배송 중 분실 (최종) | - |
-
-> **참고**: 일부 물류 센터에서는 피킹과 포장을 한 번에 처리하기 때문에 PICKED 단계를 건너뛸 수 있습니다.
+| 상태 | 의미 | 수령인 수정 | 전체 취소 | 부분 취소 | 가능한 클레임 |
+|------|------|:----------:|:--------:|:--------:|---------------|
+| **Pending** | 재고 미할당, 확정 대기 | ✅ | ✅ | ✅ | Order Cancel |
+| **Collected** | 주문 확정, 재고 미할당 | ✅ | ✅ | ✅ | Order Cancel |
+| **Partly Confirmed** | 일부 재고 할당 (부분출고 가능) | ✅ | ✅ | ✅ | Order Cancel |
+| **Partial Shipment Requested** | 일부 출고 요청됨 | ❌ | ❌ | ✅ (미출고분) | Order Cancel (미출고분) |
+| **Shipment Requested** | 전체 출고 요청 완료 | ❌ | ❌ | ❌ | Return, Exchange (출고분) |
+| **Completed** | 모든 출고 배송 완료 | ❌ | ❌ | ❌ | Return, Exchange |
+| **Canceled** | 주문 취소됨 (자동 환불) | ❌ | ❌ | ❌ | — |
 
 ---
 
-## 반품 상태 코드표
+## 출고 (Shipment)
 
-| 상태 | 코드 | 설명 | 가능한 작업 |
-|------|------|------|-----------|
-| 대기 | PENDING | 반품 생성, 수거 전 | 수거 요청, 취소, 수령인 변경 |
-| 수거 요청 | PICKUP_REQUESTED | 배송사에 수거 요청 | 취소, 검수 완료 |
-| 수거 진행 | PICKUP_ONGOING | 수거 진행 중 | 취소, 검수 완료 |
-| 수령 완료 | RECEIVED | 반품 센터에 도착 | 취소, 검수 완료, 강제 완료 |
-| 환불 완료 | REFUNDED | 환불 처리 완료 (최종) | - |
-| 취소 | CANCELED | 반품 취소 (최종) | - |
-
----
-
-## 교환 상태 코드표
-
-| 상태 | 코드 | 설명 | 가능한 작업 |
-|------|------|------|-----------|
-| 대기 | PENDING | 교환 생성, 수거 전 | 취소, 배송 수령인 변경 |
-| 수거 요청 | PICKUP_REQUESTED | 반품 수거 요청 | 취소, 배송 수령인 변경, 검수 완료 |
-| 수거 진행 | PICKUP_ONGOING | 반품 수거 중 | 취소, 배송 수령인 변경, 검수 완료 |
-| 수령 완료 | RECEIVED | 반품 상품 도착 | 취소, 검수 완료, 강제 완료 |
-| 검수 완료 | INSPECTED | 반품 검수 완료 | 교환 출고 요청 |
-| 출고 요청 | SHIPMENT_REQUESTED | 교환 상품 출고 | - (배송 진행 대기) |
-| 교환 완료 | EXCHANGED | 교환 상품 배송 완료 (최종) | - |
-| 취소 | CANCELED | 교환 취소 (최종) | - |
+| 상태 | 의미 | 출고 취소 | 가능한 클레임 |
+|------|------|:--------:|---------------|
+| **Picking Requested** | WMS에 피킹 지시 전달 | ✅ (WMS 확인 필요) | Shipment Cancel |
+| **Picking Rejected** | 재고 부족 등 피킹 실패 (재출고/취소 가능) | ✅ | Shipment Cancel |
+| **Picked** | 피킹 완료 | ❌ | — |
+| **Packed** | 포장 완료 | ❌ | — |
+| **Shipped** | 배송 시작 | ❌ | Return, Exchange |
+| **Lost** | 배송 중 분실 | ❌ | Force Refund, Reshipment |
+| **Delivered** | 배송 완료 | ❌ | Return, Exchange |
+| **Canceled** | 출고 취소됨 | ❌ | — |
 
 ---
 
-## 클레임 유형 코드표
+## 매장픽업 (Store Pickup)
 
-| 유형 | 코드 | 설명 | 생성되는 도메인 |
-|------|------|------|---------------|
-| 취소 | CANCEL | 주문/상품 취소 | - (주문에서 직접 처리) |
-| 반품 | RETURN | 상품 반환 → 환불 | Return |
-| 반품 강제환불 | RETURN_FORCE_REFUND | 특수 반품 → 즉시 환불 | Return |
-| 교환 | EXCHANGE | 상품 반환 → 교환 출고 | Exchange |
-| 재출고 | RESHIPMENT | 출고 실패 → 재배송 | Reshipment |
-
----
-
-## 검수 등급 코드표
-
-| 등급 | 코드 | 의미 | 검수 입력 가능 여부 |
-|------|------|------|------------------|
-| A | A | 최상 상태 | 가능 |
-| B | B | 양호 상태 | 가능 |
-| C | C | 기본 상태 | 가능 |
-| 미검수 | NONE | 초기 상태 | 입력 불가 (시스템 기본값) |
-| 취소 | CANCEL | 강제 완료 시 부여 | 입력 불가 (시스템 자동) |
+| 상태 | 의미 | 취소 | 가능한 클레임 |
+|------|------|:----:|---------------|
+| **Pickup Requested** | 매장으로 출고 준비 | ✅ | Order Cancel |
+| **Shipped** | 창고 → 매장 이동 완료 | ✅ | Order Cancel |
+| **Prepared** | 매장 입고, 수령 대기 | ✅ | Order Cancel |
+| **Completed** | 고객 수령 완료 | ❌ | — |
+| **Canceled** | 픽업 취소됨 | ❌ | — |
 
 ---
 
-## 주문 유형 / 수령 방법 / 태그 코드표
+## 반품 (Return)
 
-### 주문 유형
-
-| 유형 | 코드 | 설명 |
-|------|------|------|
-| 일반 | NORMAL | 기본 주문 (기본값) |
-| 선물 | GIFT | 선물 주문 |
-| 처방 | RX | 처방 관련 특수 주문 |
-
-### 수령 방법
-
-| 방법 | 코드 | 설명 |
-|------|------|------|
-| 배송 | ADDRESS_DELIVERY | 주소로 배송 (기본값) |
-| 매장 픽업 | STORE_PICKUP | 매장에서 직접 수령 |
-
-### 주문 태그
-
-| 태그 | 코드 | 설명 |
-|------|------|------|
-| 사전주문 | PREORDER | 사전 주문으로 표시 |
+| 상태 | 의미 | 반품 취소 | 환불 |
+|------|------|:--------:|------|
+| **Pending** | 회수 대기 (회수 요청 가능) | ✅ | — |
+| **Pickup Requested** | 회수 지시 전달 | ✅ | — |
+| **Pickup Ongoing** | 회수 진행 중 | ✅ | — |
+| **Received** | 입고·검수 완료 | ✅ | 검수 등급 기준 환불 |
+| **Refunded** | 환불 완료 | ❌ | 환불 완료됨 |
+| **Canceled** | 반품 취소됨 | ❌ | — |
 
 ---
 
-## 배송사 / 법인 코드표
+## 교환 (Exchange)
 
-### 배송사
-
-| 배송사 | 코드 | 추적 가능 |
-|--------|------|----------|
-| CJ대한통운 | CJ | 가능 |
-| DHL | DHL | 가능 |
-| FedEx | FEDEX | 가능 |
-| UPS | UPS | 가능 |
-| 기타 | ETC | 불가 |
-
-### 법인
-
-| 법인 | 코드 | WMS 연동 | 검수 방식 |
-|------|------|---------|----------|
-| 한국 | KR | 연동 | WMS 자동 |
-| 일본 | JP | 연동 | WMS 자동 |
-| 미국 | US | 연동 | WMS 자동 |
-| 캐나다 | CA | 미연동 | 수동 (API) |
-| 대만 | TW | 미연동 | 수동 (API) |
-| 싱가포르 | SG | 미연동 | 수동 (API) |
-| 호주 | AU | 미연동 | 수동 (API) |
+| 상태 | 의미 | 교환 취소 |
+|------|------|:--------:|
+| **Pending** | 회수 대기 | ✅ |
+| **Pickup Requested** | 회수 지시 전달 | ✅ |
+| **Pickup Ongoing** | 회수 진행 중 | ✅ |
+| **Received** | 기존 상품 입고 | ✅ |
+| **Inspected** | 검수 완료 | ❌ |
+| **Shipment Requested** | 새 상품 출고 요청 | ❌ |
+| **Exchanged** | 새 상품 발송 완료 | ❌ |
+| **Canceled** | 교환 취소됨 | ❌ |
 
 ---
 
-## 재고 이벤트 코드표
+## 재출고 (Reshipment)
 
-| 이벤트 | 코드 | 설명 |
-|--------|------|------|
-| 온라인 재고 갱신 | UPDATE_ONLINE_STOCK | ERP에서 재고 동기화 |
-| 선주문 갱신 | UPDATE_PREORDER | 선주문 수량 변경 |
-| 재고 이전 | TRANSFER | 채널 간 재고 이동 |
-| 주문 생성 | CREATE_ORDER | 주문으로 재고 차감 |
-| 주문 취소 | CANCEL_ORDER | 취소로 재고 복원 |
-| 주문 출고 | SHIP_ORDER | 출고로 재고 확정 |
+재출고는 출고(Shipment)와 동일한 상태 흐름을 따릅니다.
+
+| 상태 | 의미 | 취소 |
+|------|------|:----:|
+| **Picking Requested** | 피킹 지시 전달 | ✅ (WMS 확인 필요) |
+| **Picking Rejected** | 피킹 실패 (재출고/취소 가능) | ✅ |
+| **Picked / Packed** | 피킹·포장 완료 | ❌ |
+| **Shipped** | 배송 시작 | ❌ |
+| **Delivered** | 배송 완료 | ❌ |
+| **Canceled** | 취소됨 | ❌ |
+
+---
+
+## 클레임 유형 (Claim Type)
+
+| 유형 | 의미 | 회수 필요 |
+|------|------|:--------:|
+| **CANCEL** | 주문 취소 | ❌ |
+| **RETURN** | 반품 + 환불 | ✅ |
+| **RETURN_FORCE_REFUND** | 검수 없이 즉시 환불 | ✅ |
+| **EXCHANGE** | 회수 + 새 상품 발송 | ✅ |
+| **RESHIPMENT** | 출고 실패/분실 재발송 | ❌ |
+
+**귀책(Fault)**: `CUSTOMER`(고객 귀책) / `OPERATION`(운영 귀책) — 환불·정산에 반영됩니다.

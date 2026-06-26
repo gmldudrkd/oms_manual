@@ -2,52 +2,59 @@
 sidebar_position: 2
 ---
 
-# Field Definitions by Screen / Menu
+# Field Definitions
 
-## Order List Screen
+This is a summary of the meaning of the items (fields) that appear frequently on screen.
 
-| Field | Description |
-|-------|-------------|
-| Order No. | OMS internal order ID |
-| Origin Order No. | Order number assigned by the sales channel |
-| Purchase No. | Payment-related unique number |
-| Brand | GM / TAM / NUD / NUF / ATS |
-| Channel | Sales channel name |
-| Order Type | NORMAL / GIFT / RX |
-| Received Method | ADDRESS_DELIVERY / STORE_PICKUP |
-| Tag | PREORDER, etc. |
-| Order Status | PENDING ~ COMPLETED |
-| Ordered At | Order received time |
-| Orderer Name | Customer name (masked) |
+## Order Fields
 
-## Order Detail Screen - Product Information
+| Field | Meaning |
+|------|------|
+| **Order No** | The OMS order number |
+| **Purchase No** | The original order number from the sales channel |
+| **Receive Method** | The receiving method — Delivery / Store Pickup |
+| **Order Type** | The order type — NORMAL / GIFT / RX |
+| **Tags** | Order tags — e.g. PREORDER |
+| **Orderer** | The orderer's information (name / email / phone) |
+| **Recipient** | The recipient's information (name / phone / address) |
+| **Shipment No** | The shipment number |
+| **Tracking No** | The courier tracking number |
 
-| Field | Description |
-|-------|-------------|
-| SKU | Product unique code |
-| Product Code | Internal product code (SAP Code) |
-| Product Name | Product name |
-| UPC | Barcode |
-| Category | Product category |
-| Ordered Qty | Quantity ordered by the customer |
-| Allocated Qty | Quantity secured from stock |
-| Canceled Qty | Canceled quantity |
-| Shipped Qty | Quantity processed for shipment |
-| Delivered Qty | Quantity delivered to the customer |
-| Returned Qty | Quantity processed as returned |
-| Reshipped Qty | Quantity processed as reshipment |
-| Unit Price | Price per product |
-| Subtotal | Ordered Qty x Unit Price |
+## Order Item Quantity Fields
 
-## Return / Exchange Detail Screen
+| Field | Meaning |
+|------|------|
+| **Ordered quantity** | The quantity the customer ordered |
+| **Allocated quantity** | The quantity stock has been allocated for |
+| **Canceled quantity** | The quantity canceled |
+| **Shipped quantity** | The quantity shipped |
+| **Delivered quantity** | The quantity delivered |
+| **Returned / Reshipped quantity** | The quantity returned/reshipped |
 
-| Field | Description |
-|-------|-------------|
-| Return / Exchange No. | Unique number of the return or exchange case |
-| Origin Order No. | Original order number |
-| Status | Current progress status |
-| Claim Reason | Reason for return/exchange |
-| Responsibility | Customer responsibility / Operation responsibility |
-| Pickup Shipping Info | Carrier, tracking number, tracking URL |
-| Inspection Result | Product-level inspection grade (A/B/C) |
-| Refund Info | Refund amount and details (for returns) |
+## Stock Fields
+
+| Field | Meaning |
+|------|------|
+| **ERP** | Stock quantity per the ERP |
+| **ERP Update** | Changes applied since the daily batch |
+| **Safety** | Safety stock |
+| **Undistributed** | Undistributed quantity |
+| **Distribution Ratio** | The channel distribution ratio (%) |
+| **Distributed** | The quantity distributed to channels |
+| **Pre-order** | The pre-order quantity |
+| **Used** | The in-use quantity (Pending–Packed) |
+| **Shipped** | The shipped/delivered quantity |
+| **Available** | The sellable quantity = (Distributed + Pre-order) − (Used + Shipped) |
+| **Stock Status** | IN_STOCK / OUT_OF_STOCK / OVERSELLING |
+| **Channel Send Status** | Channel exposure ON / OFF |
+
+## Product Fields
+
+| Field | Meaning |
+|------|------|
+| **SKU Code** | The minimum sellable unit code |
+| **SAP Code** | The SAP (ERP) product code |
+| **Model Code** | The model code |
+| **UPC Code** | The barcode code |
+| **Product Type** | Single / Bundle |
+| **Product Info Status** | Complete / Incomplete |

@@ -1,19 +1,34 @@
 ---
-sidebar_position: 2
+sidebar_position: 8
 ---
 
-# Wrong Delivery Exchange Scenario
+# Exchange Scenarios
 
-## Situation
+> **Situation**: A customer requests an exchange because the size/color doesn't fit or the item is defective.
 
-A product different from what the customer ordered was delivered.
+An exchange proceeds in the order **collect the original product → inspect → send the new product**. For detailed screen operations, see [Exchange Processing](../order/exchange).
 
-## Processing Flow
+## Standard Exchange (Size/Color Change)
 
-1. **Register claim**: Exchange (EXCHANGE) type, operation responsibility (OPERATION)
-2. **Return pickup**: Collect the wrongly delivered product
-3. **Inspection**: Check the condition of the wrongly delivered product and assign a grade
-4. **Exchange shipment**: Ship the correct product
-5. **Exchange completed**
+```mermaid
+graph LR
+    A[Pending] --> B[Pickup] --> C[Received] --> D[Inspected] --> E[Ship new product] --> F[Exchanged]
+```
 
-> Since this is operation responsibility, return shipping cost is covered by the company.
+1. Pickup request → the original product is received (**Received**)
+2. Inspect with **Refund Grading** (A/B/C) → **Inspected**
+3. Send the new product with **Request Shipment** → **Exchanged**
+
+## Defective Exchange (Operational Fault)
+
+- Handle the fault as **OPERATION**.
+- The exchange can proceed even if the collected product is clearly defective (grade C).
+
+## When You Need to Cancel an Exchange
+
+- Before inspection begins (**Pending / Pickup Requested / Pickup Ongoing / Received**), it can be cancelled with **"Cancel Exchange"**.
+- After **Inspected**, it cannot be cancelled. In that case, proceed with sending the new product, or settle it separately through a return/refund.
+
+## When the New Product Is Out of Stock
+
+If the new exchange product is out of stock, picking may be rejected when you request the shipment. Secure the stock, or coordinate with the customer to convert it into a refund (return).

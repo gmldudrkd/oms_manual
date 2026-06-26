@@ -1,38 +1,28 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 ---
 
-# Partial Shipment / Split Delivery Scenario
+# Partial Shipment / Split Delivery (Partial Shipment)
 
-## Situation
+> **Situation**: Only some of the multiple products in an order are in stock, so you ship the available ones first and send the rest later.
 
-A customer ordered two units of product A and one unit of product B, but only product A has stock.
-
-## Processing Flow
+## Response Sequence
 
 ```mermaid
-sequenceDiagram
-    participant Operations
-    participant OMS
-    participant WMS
-
-    Operations->>OMS: Request partial shipment (only 2 units of product A)
-    OMS->>OMS: Order status -> PARTIAL_SHIPMENT_REQUESTED
-    OMS->>WMS: Create Shipment #1 (product A)
-    WMS-->>OMS: Picking/packing/delivery completed
-
-    Note over OMS: Waiting for product B stock arrival
-
-    Operations->>OMS: Request remaining shipment (1 unit of product B)
-    OMS->>OMS: Order status -> SHIPMENT_REQUESTED
-    OMS->>WMS: Create Shipment #2 (product B)
-    WMS-->>OMS: Picking/packing/delivery completed
-
-    OMS->>OMS: All shipments delivered -> order COMPLETED
+graph LR
+    A[Collected] --> B[Partly Confirmed<br/>Some stock secured]
+    B --> C[Request Shipment<br/>Ship secured items first]
+    C --> D[Partial Shipment Requested]
+    D --> E[Additional shipment once remaining stock is secured]
+    E --> F[Shipment Requested<br/>All items shipped]
 ```
 
-## Key Points
+1. The order enters the **Partly Confirmed** (only partially allocated) status.
+2. On the ORDER tab of the order detail page, use **"Request Shipment"** to ship the secured products first. ([Partial Shipment Request](../order/order-cancel#부분-출고-요청))
+3. The order becomes **Partial Shipment Requested**, and the remaining products are shipped as soon as stock is secured.
+4. Once all products are shipped, the order becomes **Shipment Requested**.
 
-- One order can be split into multiple Shipment cases
-- All shipments must become `Delivered (DELIVERED)` before the order becomes `Completed (COMPLETED)`
-- When partial shipment is requested, the shippable quantity of remaining items is calculated automatically
+## Checkpoints
+
+- In the **Partial Shipment Requested** status, **only the unshipped portion** can be cancelled (already-shipped products cannot be cancelled).
+- If the remaining products cannot be secured for an extended period, consider cancelling the unshipped portion and offering a refund.

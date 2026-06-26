@@ -1,0 +1,8 @@
+{
+  "label": "주문 (Order)",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "주문 접수부터 출고·배송, 반품·교환·재출고·매장픽업, 데이터 다운로드까지 주문 운영의 모든 기능을 다룹니다."
+  }
+}

@@ -1,35 +1,28 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
-# Store Pickup Scenario
+# Store Pickup Operations (Store Pickup)
 
-## Situation
+> **Situation**: A customer places an order for store pickup. You need to manage the progress from warehouse → store → customer pickup.
 
-A customer orders online and picks up the product directly at a store.
+## Process Flow
 
-## Processing Flow
-
-```
-Order received (received method: STORE_PICKUP)
-    |
-Product arrives at the store (B2B outbound shipment)
-    |
-Store preparation completed (PREPARED)
-    |
-Customer visits store -> pickup completed (COMPLETED)
-    |
-Order completed
+```mermaid
+graph LR
+    A[Pickup Requested<br/>Store shipment requested] --> B[Shipped<br/>Moved to store]
+    B --> C[Prepared<br/>Ready for pickup]
+    C --> D[Completed<br/>Picked up by customer]
 ```
 
-## Store Pickup Statuses
+1. When an order comes in, the warehouse sends the product to the store (**Pickup Requested**).
+2. Once it arrives at the store, it progresses **Shipped → Prepared** (ready for pickup).
+3. When the customer picks it up at the store, it becomes **Completed**.
 
-| Status | Meaning |
-|--------|---------|
-| PICKUP_REQUESTED | Created automatically when the order is created |
-| SHIPPED | Product shipped from logistics center to store |
-| PREPARED | Store completed preparation for customer pickup |
-| COMPLETED | Customer picked up the product at the store |
-| CANCELED | Store pickup canceled |
+## Operator Tips
 
-> **Store Pickup Feature (OMS-1913 ~ OMS-1917)**: Store pickup entities and event handling were newly developed. Store pickup status can be used as a filter in the order list.
+- In **Order List**, filter by **Receive Methods = Store Pickup** to view only store pickup orders together.
+- Check the stage-by-stage status in the **Store Pickup** area of the dashboard's ORDER tab.
+- If the customer wants to cancel **before pickup (Completed)**, cancel it on the order detail page (automatic refund and stock return).
+
+For a detailed screen description, see [Store Pickup](../order/store-pickup).

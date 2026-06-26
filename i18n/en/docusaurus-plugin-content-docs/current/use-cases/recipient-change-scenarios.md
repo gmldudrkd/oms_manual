@@ -1,58 +1,29 @@
 ---
-sidebar_position: 7
+sidebar_position: 3
 ---
 
-# Recipient Change Restriction Scenario
+# Recipient / Address Change (Recipient Change)
 
-## Situation
+> **Situation**: A customer asks to change the delivery address or recipient information.
 
-A customer requests a delivery address or recipient information change.
+## Whether a Change Is Possible Depends on the Stage
 
-## Conditions for Changes
+A recipient/address change is **only possible before shipment**.
 
-Recipient changes are only available **before shipment starts**.
+| Target | Status Where Change Is Possible | Method |
+|------|------------------|------|
+| **Order (delivery)** | Pending / Collected / Partly Confirmed / Shipment Awaiting | Edit on the order detail page |
+| **Return** | Before pickup begins | RETURN tab → **"Edit Recipient Info"** |
+| **Exchange (new product)** | Pending / Pickup Requested / Pickup Ongoing | EXCHANGE tab → **"Edit Recipient Info"** |
+| **Reshipment** | Before shipment | RESHIPMENT tab → **"Edit Recipient Info"** |
 
-| Domain | Change Available Statuses | Change Unavailable Statuses |
-|--------|---------------------------|-----------------------------|
-| Order recipient | `PENDING`, `COLLECTED`, `PARTLY_CONFIRMED` | After `SHIPMENT_REQUESTED` |
-| Return pickup address | `PENDING` | After `PICKUP_REQUESTED` |
-| Exchange shipping recipient | `PENDING`, `PICKUP_REQUESTED`, `PICKUP_ONGOING` | After `RECEIVED` |
+## When Already Shipped
 
-## Processing Flow
+After a shipment (Shipped), the address cannot be changed in OMS. In this case, respond with one of the following.
 
-### Order Recipient Change
+- Guide the customer to change the delivery address through the courier (where possible).
+- Return and re-send: process a [Return](../order/return), then create a new order / reshipment.
 
-```mermaid
-sequenceDiagram
-    participant Customer
-    participant Operations
-    participant OMS
-
-    Customer->>Operations: Request delivery address change
-    Operations->>OMS: Check order status
-
-    alt PENDING / COLLECTED / PARTLY_CONFIRMED
-        Operations->>OMS: Change recipient information
-        OMS-->>Operations: Change completed
-        Operations-->>Customer: Notify change completed
-    else After SHIPMENT_REQUESTED
-        OMS-->>Operations: Change unavailable (shipment in progress)
-        Operations-->>Customer: Notify unavailable -> guide return and reorder
-    end
-```
-
-### Return Pickup Address Change
-
-- Only available in `Pending (PENDING)` status
-- After the pickup request is sent to the carrier, changing the address can cause mismatch with carrier information
-
-### Exchange Shipping Recipient Change
-
-- The delivery address for exchange products can be changed in `PENDING`, `PICKUP_REQUESTED`, and `PICKUP_ONGOING` statuses
-- After inspection completion (`RECEIVED`), the case enters the shipment phase and changes are unavailable
-
-## Key Points
-
-- If recipient change is needed after shipment starts, guide the customer to **return and reorder**
-- Information already sent to the carrier cannot be changed in OMS
-- Recipient changes are automatically recorded in order history
+:::warning
+Always process an address change **before shipment**. After shipment, the options for handling it in OMS are limited.
+:::

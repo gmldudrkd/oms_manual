@@ -1,34 +1,28 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
-# 매장 픽업 시나리오
+# 매장픽업 운영 (Store Pickup)
 
-## 상황
-고객이 온라인에서 주문하고 매장에서 직접 수령하는 경우.
+> **상황**: 고객이 매장 수령으로 주문했습니다. 창고 → 매장 → 고객 수령까지 진행 상태를 관리해야 합니다.
 
-## 처리 흐름
+## 진행 흐름
 
-```
-주문 접수 (수령방법: STORE_PICKUP)
-    ↓
-매장에 상품 입고 (B2B 출고)
-    ↓
-매장 준비 완료 (PREPARED)
-    ↓
-고객 매장 방문 → 수령 완료 (COMPLETED)
-    ↓
-주문 완료
+```mermaid
+graph LR
+    A[Pickup Requested<br/>매장 출고요청] --> B[Shipped<br/>매장 이동완료]
+    B --> C[Prepared<br/>수령 준비완료]
+    C --> D[Completed<br/>고객 수령완료]
 ```
 
-## 매장 픽업 상태
+1. 주문이 들어오면 창고에서 매장으로 상품을 보냅니다(**Pickup Requested**).
+2. 매장에 도착하면 **Shipped → Prepared**(수령 준비)로 진행됩니다.
+3. 고객이 매장에서 수령하면 **Completed**가 됩니다.
 
-| 상태 | 의미 |
-|------|------|
-| PICKUP_REQUESTED | 주문 생성 시 자동 생성 |
-| SHIPPED | 물류센터에서 매장으로 발송 |
-| PREPARED | 매장에서 고객 수령 준비 완료 |
-| COMPLETED | 고객이 매장에서 수령 완료 |
-| CANCELED | 매장 픽업 취소 |
+## 운영자 팁
 
-> **매장 픽업 기능 (OMS-1913 ~ OMS-1917)**: 매장 픽업 엔티티 및 이벤트 처리가 새로 개발되었습니다. 주문 목록에서 매장 픽업 상태로 필터링이 가능합니다.
+- **Order List**에서 **Receive Methods = Store Pickup**으로 필터링하면 매장픽업 주문만 모아 볼 수 있습니다.
+- 대시보드 ORDER 탭의 **Store Pickup** 영역에서 단계별 현황을 확인합니다.
+- 고객이 **수령(Completed) 전**에 취소를 원하면 주문 상세에서 취소합니다(자동 환불·재고 복귀).
+
+자세한 화면 설명은 [매장픽업](../order/store-pickup)을 참고하세요.

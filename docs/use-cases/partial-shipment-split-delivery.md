@@ -1,36 +1,28 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 ---
 
-# 부분출고 / 분할배송 시나리오
+# 부분 출고/분할 배송 (Partial Shipment)
 
-## 상황
-고객이 A 상품 2개, B 상품 1개를 주문했는데, A 상품만 재고가 있는 경우.
+> **상황**: 주문한 여러 상품 중 일부만 재고가 확보되어, 먼저 출고하고 나머지는 나중에 보내야 합니다.
 
-## 처리 흐름
+## 대응 순서
 
 ```mermaid
-sequenceDiagram
-    participant 운영팀
-    participant OMS
-    participant WMS
-
-    운영팀->>OMS: 부분 출고 요청 (A 상품 2개만)
-    OMS->>OMS: 주문 상태 → PARTIAL_SHIPMENT_REQUESTED
-    OMS->>WMS: Shipment #1 생성 (A 상품)
-    WMS-->>OMS: 피킹/포장/배송 완료
-
-    Note over OMS: B 상품 재고 입고 대기
-
-    운영팀->>OMS: 나머지 출고 요청 (B 상품 1개)
-    OMS->>OMS: 주문 상태 → SHIPMENT_REQUESTED
-    OMS->>WMS: Shipment #2 생성 (B 상품)
-    WMS-->>OMS: 피킹/포장/배송 완료
-
-    OMS->>OMS: 모든 출고 배송 완료 → 주문 COMPLETED
+graph LR
+    A[Collected] --> B[Partly Confirmed<br/>일부 재고 확보]
+    B --> C[Request Shipment<br/>확보분 먼저 출고]
+    C --> D[Partial Shipment Requested]
+    D --> E[남은 재고 확보 후 추가 출고]
+    E --> F[Shipment Requested<br/>전체 출고 완료]
 ```
 
-## 핵심 포인트
-- 하나의 주문이 여러 출고(Shipment) 건으로 나뉠 수 있음
-- 모든 출고 건이 `배송 완료(DELIVERED)`가 되어야 주문이 `완료(COMPLETED)`
-- 부분 출고 시 남은 상품의 출고 가능 수량 자동 계산
+1. 주문이 **Partly Confirmed**(일부만 할당) 상태가 됩니다.
+2. 주문 상세 ORDER 탭에서 **"Request Shipment"**로 확보된 상품을 먼저 출고합니다. ([부분 출고 요청](../order/order-cancel#부분-출고-요청))
+3. 주문은 **Partial Shipment Requested**가 되고, 남은 상품은 재고가 확보되는 대로 추가 출고합니다.
+4. 모든 상품이 출고되면 **Shipment Requested**가 됩니다.
+
+## 체크 포인트
+
+- **Partial Shipment Requested** 상태에서는 **미출고분만** 취소할 수 있습니다(이미 출고된 상품은 취소 불가).
+- 남은 상품이 장기간 확보되지 않으면, 미출고분을 취소하고 환불 안내를 고려하세요.

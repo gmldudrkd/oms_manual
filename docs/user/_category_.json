@@ -1,0 +1,8 @@
+{
+  "label": "사용자 (User)",
+  "position": 6.5,
+  "link": {
+    "type": "generated-index",
+    "description": "사용자 계정 조회, 권한 요청과 승인/반려, 역할(Role)과 브랜드·법인 권한 관리를 다룹니다."
+  }
+}

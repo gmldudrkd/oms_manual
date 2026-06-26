@@ -1,0 +1,5 @@
+{
+  "label": "Order",
+  "position": 3,
+  "link": { "type": "generated-index", "description": "Everything about order operations: intake, shipment & delivery, returns/exchanges/reshipment, store pickup, and data export." }
+}
