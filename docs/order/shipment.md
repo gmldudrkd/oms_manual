@@ -23,7 +23,7 @@ graph LR
 | 상태 | 의미 | 운영자가 할 일 |
 |------|------|----------------|
 | **Picking Requested** | WMS에 피킹 지시 전달됨 | 필요 시 출고 취소 가능(WMS 확인 필요) |
-| **Picking Rejected** | 재고 부족 등으로 피킹 실패 | 재출고(Re-Ship) 또는 주문 취소 |
+| **Picking Rejected** | 재고 부족 등으로 피킹 실패 | 재출고(Reshipment) 또는 주문 취소 |
 | **Picked / Packed** | 피킹·포장 완료 | 대기(취소 불가) |
 | **Shipped** | 배송 시작(송장 발급) | 배송 추적, 사고 시 분실 처리 |
 | **Delivered** | 배송 완료 | 완료. 이후 반품/교환 가능 |

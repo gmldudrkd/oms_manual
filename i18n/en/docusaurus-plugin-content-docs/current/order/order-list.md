@@ -99,7 +99,7 @@ The ORDER tab displays **only the action buttons available for the current order
 
 ### LOG-HISTORY Tab
 
-Order status changes, fulfillment events, store pickup, and return/exchange/reshipment history are recorded **chronologically**. Clicking each entry reveals its details, which is useful for tracing "why this order is in its current state."
+Order status changes, fulfillment events, store pickup, and return/exchange/reshipment history are recorded **chronologically**. The **Type** filter at the top (All / Order / Return / Exchange / Reshipment) lets you view only a specific type of history, which is useful for tracing "why this order is in its current state."
 
 :::tip
 The full rules for which actions (cancel, edit, claim) are possible in each status are summarized in the [Reference — Status Code Table](../reference/status-codes).

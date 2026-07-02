@@ -39,6 +39,30 @@ There are two **Return Methods**.
 
 ---
 
+## Choosing a Pickup Option When Registering a Return
+
+On the order details screen, selecting **Register Claim → Claim Type = Return** also reveals a **Pickup Option** (Exchange behaves the same way). This option determines whether OMS sends a pickup (collection) instruction.
+
+| Pickup Option | Behavior | When to use |
+|---------------|----------|-------------|
+| **Request Pickup** | Sends a pickup (collection) instruction. | Normal returns — when collection is required |
+| **Do Not Request Pickup** | Creates the return without a pickup. | When the item is already collected, or when the collection status can be received from the WMS |
+
+If you choose **Do Not Request Pickup**, enter the **Tracking Information (Carrier and tracking number)** of the already-collected shipment. This is typically used when:
+
+- The item has already been manually received and processed in the WMS, and only a system-side refund is needed
+- The customer shipped the item back themselves
+- The received item differs from the requested one, so the original return is canceled and a new return is registered by re-selecting the received item
+
+:::tip Do Not Request Pickup vs. Force Refund
+Both create a return **without a pickup request**, but they differ in **whether the WMS return-processing status can be received**.
+
+- **Can be received** → **Do Not Request Pickup** + Tracking Information (refund after receipt and inspection)
+- **Cannot be received** → **Force Refund** (immediate refund without receiving WMS status)
+:::
+
+---
+
 ## Return Processing Steps
 
 Expand the return card on the **RETURN tab** of the order details screen to process it.

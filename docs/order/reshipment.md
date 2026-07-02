@@ -31,11 +31,9 @@ graph LR
 
 ## 재출고 처리 절차
 
-주문 상세 화면의 **RESHIPMENT 탭**에서 재출고 카드를 펼쳐 처리합니다.
+### 다시 보내기 (Request Shipment)
 
-### 다시 보내기 (Re-Ship)
-
-1. 재출고 상태가 **Picking Rejected**(피킹 거부)이면 **"Re-Ship"** 버튼이 나타납니다.
+1. 재출고 상태가 **Picking Rejected**(피킹 거부)이면 **"Request Shipment"** 버튼이 나타납니다.
 2. 버튼을 눌러 재고를 확보한 상태로 다시 출고를 요청합니다.
 
 ### 수령인 정보 수정 (Edit Recipient Info)

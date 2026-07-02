@@ -42,6 +42,8 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl:
             'https://github.com/gmldudrkd/oms_manual/tree/main/',
+          // promotion: 개발 중인 범위라 파일은 유지하되 빌드/노출에서 제외
+          exclude: ['promotion/**'],
         },
         blog: false,
         theme: {

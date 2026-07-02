@@ -50,7 +50,6 @@ The left menu is grouped by business area.
 | **Stock** | Overview, Distribution Setting, History | [Stock](../stock/overview) |
 | **Product** | Product List, Channel Product List | [Product](../product/product-list) |
 | **Channel** | Channel List | [Channel](../channel/channel-list) |
-| **Promotion** | Promotion List | [Promotion](../promotion/promotion-list) |
 | **User** | User List | [User](../user/user-list) |
 
 Clicking a group title collapses or expands its sub-menus.

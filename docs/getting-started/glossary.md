@@ -35,7 +35,6 @@ sidebar_position: 4
 |------|------|
 | **Order** | 고객 주문 건 |
 | **Order No** | OMS 주문 번호 |
-| **Origin/Purchase No** | 판매 채널의 원주문 번호 |
 | **Shipment** | 출고 건(포장·배송 단위). 한 주문이 여러 출고로 나뉠 수 있음 |
 | **Store Pickup** | 매장 수령 주문 |
 | **Receive Method** | 수령 방법. Delivery(배송) 또는 Store Pickup(매장픽업) |

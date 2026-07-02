@@ -8,8 +8,6 @@ sidebar_position: 8
 
 목록·상세에서 수령방법(Receive Method)이 **보라색 "Store Pickup"** 칩으로 표시되어 일반 배송 주문과 구분됩니다. 대시보드 ORDER 탭의 **Store Pickup** 영역에서 현황을 모아 볼 수 있습니다.
 
-<img src="/oms_manual/img/iic_oms_storepickup_flow.png" alt="매장픽업 흐름" style={{maxWidth: '900px', width: '100%'}} />
-
 ---
 
 ## 매장픽업 상태 흐름

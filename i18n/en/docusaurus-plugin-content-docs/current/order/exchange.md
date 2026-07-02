@@ -31,6 +31,23 @@ graph LR
 
 ---
 
+## Choosing a Pickup Option When Registering an Exchange
+
+On the order details screen, selecting **Register Claim → Claim Type = Exchange** also reveals a **Pickup Option** (Return behaves the same way). This option determines whether OMS sends a pickup (collection) instruction for the original product.
+
+| Pickup Option | Behavior | When to use |
+|---------------|----------|-------------|
+| **Request Pickup** | Sends a pickup (collection) instruction. | Normal exchanges — when the original product needs to be collected |
+| **Do Not Request Pickup** | Creates the exchange without a pickup. | When the item is already collected, or when the collection status can be received from the WMS |
+
+If you choose **Do Not Request Pickup**, enter the **Tracking Information (Carrier and tracking number)** of the already-collected shipment. This is typically used when:
+
+- The original item has already been manually received and processed in the WMS, and the exchange only needs to proceed system-side
+- The customer shipped the item back themselves
+- The received item differs from the requested one, so the original exchange is canceled and a new exchange is registered by re-selecting the received item
+
+---
+
 ## Exchange Processing Steps
 
 Expand the exchange card on the **EXCHANGE tab** of the order details screen to process it.

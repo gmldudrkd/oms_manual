@@ -27,7 +27,6 @@ The OMS is the system that manages **the entire process from the moment a custom
 | Reshipment | Re-sending shipments that failed or were lost |
 | Stock | Managing sellable quantities by channel |
 | Product | Managing the product master, prices, images, and channel exposure |
-| Promotion | Configuring promotions such as GWP and packaging perks |
 
 ---
 
@@ -64,7 +63,6 @@ This manual is divided into chapters that follow the **OMS left-hand menu struct
 | [Stock](./stock/overview) | Stock concepts, channel distribution, safety stock/pre-order, change history |
 | [Product](./product/product-list) | Product master, bundles, bulk upload, channel products |
 | [Channel](./channel/channel-list) | Channel lookup/registration/settings |
-| [Promotion](./promotion/promotion-list) | Promotion registration/editing/lookup |
 | [User](./user/user-list) | Account, permission request, and approval management |
 | [Common Scenarios](./use-cases/delivery-lost) | Scenario-based responses for loss, misdelivery, stock mismatch, etc. |
 | [Reference](./reference/status-codes) | Status codes, field definitions, error messages, brands and channels |

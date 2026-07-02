@@ -50,7 +50,6 @@ OMS 화면은 **상단 헤더 + 좌측 메뉴 + 본문**의 세 영역으로 구
 | **Stock** | Overview, Distribution Setting, History | [재고](../stock/overview) |
 | **Product** | Product List, Channel Product List | [상품](../product/product-list) |
 | **Channel** | Channel List | [채널](../channel/channel-list) |
-| **Promotion** | Promotion List | [프로모션](../promotion/promotion-list) |
 | **User** | User List | [사용자](../user/user-list) |
 
 각 그룹 제목을 클릭하면 하위 메뉴가 접히거나 펼쳐집니다.
