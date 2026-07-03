@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 26.05.11 New Features
+# New Features
 
 > Gentle Monster US,CA 법인을 IIC OMS 로 통합합니다.   
 > 기존 시스템에서 사용하던 기능은 [26.05.07 Core Operations](/docs/migration/GM_CA.md) 문서를 참고하세요.   

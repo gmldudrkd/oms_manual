@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 26.05.07 Core Operations
+# Core Operations
 
 > Gentle Monster US,CA 법인을 IIC OMS 로 통합합니다.  
 > 기존 시스템에서 사용하시던 모든 기능은 신규 시스템에서도 동일하게 사용 가능합니다.      

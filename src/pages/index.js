@@ -8,10 +8,10 @@ import styles from './index.module.css';
 const homeContent = {
   ko: {
     pageTitle: '홈',
-    metaDescription: 'IIC OMS 운영 매뉴얼 — 마이그레이션 가이드 및 변경 이력',
-    heroSubtitle: 'IIC OMS 마이그레이션 가이드 및 변경 이력',
-    getStarted: '마이그레이션 가이드 →',
-    getStartedLink: '/docs/migration/GM_CA',
+    metaDescription: 'IIC OMS 운영 매뉴얼',
+    heroSubtitle: '가이드 및 변경 이력',
+    getStarted: '시작하기',
+    getStartedLink: '/docs',
     sectionTitle: '문서',
     sectionDescription: '마이그레이션 가이드와 변경 이력을 확인하세요',
     mainFeatures: [
@@ -38,11 +38,11 @@ const homeContent = {
   en: {
     pageTitle: 'Home',
     metaDescription:
-      'IIC OMS operations manual — migration guides and changelog',
+      'IIC OMS operations manual',
     heroSubtitle:
       'IIC OMS migration guides and changelog',
-    getStarted: 'Migration guide →',
-    getStartedLink: '/docs/migration/GM_CA',
+    getStarted: 'Getting Start',
+    getStartedLink: '/docs',
     sectionTitle: 'Docs',
     sectionDescription: 'Browse migration guides and the changelog.',
     mainFeatures: [
