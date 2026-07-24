@@ -19,13 +19,13 @@ const homeContent = {
         title: 'Core Operations',
         icon: '📘',
         description: '기존 시스템 기능을 신규 시스템에서 어디서 수행하는지 안내',
-        link: '/docs/migration/GM_CA',
+        link: '/docs/migration/GM_CA_US_Core_Operations',
       },
       {
         title: 'New Features',
         icon: '✨',
         description: '신규 시스템에 추가된 기능 사용 가이드',
-        link: '/docs/migration/GM_US',
+        link: '/docs/migration/GM_CA_US_New_Features',
       },
       {
         title: '변경 이력',
@@ -50,13 +50,13 @@ const homeContent = {
         title: 'Core Operations',
         icon: '📘',
         description: 'Where to perform existing-system tasks in the new system',
-        link: '/docs/migration/GM_CA',
+        link: '/docs/migration/GM_CA_US_Core_Operations',
       },
       {
         title: 'New Features',
         icon: '✨',
         description: 'How to use newly added features in the new system',
-        link: '/docs/migration/GM_US',
+        link: '/docs/migration/GM_CA_US_New_Features',
       },
       {
         title: 'Changelog',

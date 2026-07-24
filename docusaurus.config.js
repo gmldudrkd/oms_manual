@@ -69,7 +69,7 @@ const config = {
         },
         items: [
           {
-            to: '/docs/migration/GM_CA',
+            to: '/docs/migration/GM_CA_US_Core_Operations',
             position: 'left',
             label: 'Migration',
           },
@@ -97,11 +97,11 @@ const config = {
             items: [
               {
                 label: '26.05.07 Core Operations',
-                to: '/docs/migration/GM_CA',
+                to: '/docs/migration/GM_CA_US_Core_Operations',
               },
               {
                 label: '26.05.11 New Features',
-                to: '/docs/migration/GM_US',
+                to: '/docs/migration/GM_CA_US_New_Features',
               },
             ],
           },

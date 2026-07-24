@@ -5,7 +5,7 @@ sidebar_position: 2
 # 26.05.11 New Features
 
 > Gentle Monster US and CA entities are being integrated into IIC OMS.
-> For features previously available in the existing system, please refer to the [26.05.07 Core Operations](./GM_CA.md) document.
+> For features previously available in the existing system, please refer to the [26.05.07 Core Operations](./GM_CA_US_Core_Operations.md) document.
 > This document is a guide on **"how to use the newly added features"**.
 
 
