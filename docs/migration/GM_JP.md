@@ -111,12 +111,12 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 | After | **Pending** | | 고객 결제완료 |
 | Release | **Collected** | | 주문 재고 할당 (결제 완료 후 1시간) 혹은 할당 실패 |
 | Confirmed | **Partly Confirmed** | | 주문 부분 재고 할당 성공 |
-| Confirmed | **Partial Shipment Requested** | | 주문 부분 WMS 출고 지시 |
+| Confirmed | **Partial Shipment Requested** | **Picking Requested** | 주문 부분 WMS 출고 지시 |
 | Req-Allocation | **Shipment Requested** | **Picking Requested** | 주문 전체 WMS 출고 지시 |
 | Allocation | | **Picked** | WMS 피킹 완료 |
 | Packed | | **Packed** | WMS 패킹 완료 |
 | Shipping | | **Shipped** | 창고에서 출고 완료 |
-| Lost | | **Lost**(`배송 종결값`) | 출고 중 분실 |
+| Lost | **Completed** | **Lost**(`배송 종결값`) | 출고 중 분실 |
 |  |  | **Delivered**(`배송 종결값`) | 주문의 배송 전체 종결 |
 | Delivered | **Completed** | **Delivered**(`배송 종결값`) | 주문의 배송 전체 종결 |
 | Cancel | **Canceled** | **Canceled** (`배송 종결값`)| 주문 수집 후 취소 |
@@ -242,7 +242,6 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 | ERP 재고 수신 | 매시 수신 | 하루 1번 분배 |
 | 채널재고 자동 분배 | 매 시 분배 | 하루 1번 분배 |
 | 채널재고 수동 이동 | X | 채널에 재고이동 필요 시 항상 가능 (**증가만 가능**)  |
-| ERP 변동재고 수신 | X | 온라인 창고로 재고가 이동 시 |
 
 ### 재고 조회
 
@@ -267,6 +266,10 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
     - [Channel Default Rate] 탭 : 채널 별 기본 분배 비율설정
     - [Product Rate] 탭 : 제품 별 비율 설정
 
+:::note
+하루 한번 재고 분배를 진행하기 때문에 판매 추이를 보고 제품의 수량을 설정할 예정이라면 총 100% 가 안되게 설정해야 합니다.
+:::
+
 > 신규 시스템
 
 #### 📹 <a href="https://drive.google.com/file/d/10s4eoyF5_4bFRcXDRsc842Vl-enuyOiQ/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>
@@ -287,28 +290,9 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 
 ### 변동재고 설정
 
-#### ✅ 변경 내용
-| 기존 시스템 | 신규 시스템 |
-|------------|------------|
-| Inventory > Placeholder | **Stock > Channel Stock Setting 탭 내 'ERP Update'**|
-
-1. Placeholder 기능 정의
-    - 기실 재고가 ERP 상에는 있으나 OMS 에 없는 경우 ERP 로 이동한 변동재고를 수신받지 못해 미리 판매를 위해 사용한 기능
-2. ERP Update 필드 정의
-    ERP 내 온라인 창고로 이동한 재고를 즉시 수신하여 ERP Update 항목에 표현
-
 :::note
-따라서, **ERP 내 이동한 재고를 즉시 받을 수 있으므로 Placeholder 기능은 필요하지 않아 제외되고 ERP Update 항목으로 확인 가능**
+JP 는 현재 신IPOS 를 사용하고 있어 변동재고 지원이 불가합니다. 추후 ERP (SAP) 도입되면 변동재고 수신 및 사용이 가능합니다.
 :::
-
-> 기존 시스템
-
-![GM OMS Overview](/img/gm_oms_placeholder.png)
-
-> 신규 시스템
-
-![GM OMS Overview](/img/iic_oms_erpupdate.png)
-
 
 ### 재고 채널 전송 여부 설정
 
