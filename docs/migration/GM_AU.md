@@ -224,21 +224,6 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 #### 📹 <a href="https://drive.google.com/file/d/1-SNRGJRRoQXKi9KyRQUmrs8FKWLVU_sI/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>
 
 
-
-### Lost
-
-| 상황 | 기존 시스템 | 신규 시스템 |
-|------|------------|------------|
-| 출고분실 | shipping 상태에서 Lost 클릭 -> Cancel 처리 | Shipping 상태에서 Lost 클릭 -> Force Refund 혹은 Reshipment 처리 선택 |
-| 입고분실 | pickup 상태에서 Lost 클릭 -> Refund 처리 | 분실 건 Cancel Return 처리 -> Register Claim 통해서 Force Refund 혹은 Reshipment 처리 선택  |
-
-#### 주의점
-- LOST 버튼 선택 이후 Confirm 시 상태는 Lost 로 즉시 변경됩니다.
-- 다음 화면에서 Force Refund 혹은 Reshipment 를 처리하지 못했으면 사유를 Lost 로 선택하여 'Register Claim' 을 통해 처리되어야 합니다.
-
-#### 📹 <a href="https://drive.google.com/file/d/11ThdwHfmMm2cLGewoud1nspeVuF64vDg/view?usp=sharing" target="_blank" rel="noopener noreferrer">Shipment Lost Guide 영상 보기</a>
-
-#### 📹 <a href="https://drive.google.com/file/d/1_5o1i7pWLg2P-DraM0YeY7tgORyV0y7r/view?usp=sharing" target="_blank" rel="noopener noreferrer">Return Lost Guide 영상 보기</a>
 ---
 
 ## 📦 Stock
@@ -295,30 +280,6 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 
 > 신규 시스템
 #### 📹 <a href="https://drive.google.com/file/d/1kh7fjXzkOBICnNUd5sx6xVxUft7sRq2J/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>
-
-### 변동재고 설정
-
-#### ✅ 변경 내용
-| 기존 시스템 | 신규 시스템 |
-|------------|------------|
-| Inventory > Placeholder | **Stock > Channel Stock Setting 탭 내 'ERP Update'**|
-
-1. Placeholder 기능 정의
-    - 기실 재고가 ERP 상에는 있으나 OMS 에 없는 경우 ERP 로 이동한 변동재고를 수신받지 못해 미리 판매를 위해 사용한 기능
-2. ERP Update 필드 정의
-    ERP 내 온라인 창고로 이동한 재고를 즉시 수신하여 ERP Update 항목에 표현
-
-:::note
-따라서, **ERP 내 이동한 재고를 즉시 받을 수 있으므로 Placeholder 기능은 필요하지 않아 제외되고 ERP Update 항목으로 확인 가능**
-:::
-
-> 기존 시스템
-
-![GM OMS Overview](/img/gm_oms_placeholder.png)
-
-> 신규 시스템
-
-![GM OMS Overview](/img/iic_oms_erpupdate.png)
 
 
 ### 재고 채널 전송 여부 설정

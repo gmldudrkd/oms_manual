@@ -223,22 +223,6 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 
 #### 📹 <a href="https://drive.google.com/file/d/1-SNRGJRRoQXKi9KyRQUmrs8FKWLVU_sI/view?usp=sharing" target="_blank" rel="noopener noreferrer">View guide video</a>
 
-
-
-### Lost
-
-| Case | Existing System | New System |
-|------|------------|------------|
-| Lost outbound shipment | Click Lost in Shipping status -> processed as Cancel | Click Lost in Shipping status -> choose Force Refund or Reshipment |
-| Lost inbound return | Click Lost in Pickup status -> processed as Refund | Cancel the lost return case -> use Register Claim to choose Force Refund or Reshipment |
-
-#### Notes
-- After selecting the LOST button and clicking Confirm, the status immediately changes to Lost.
-- If Force Refund or Reshipment was not processed on the next screen, it must be handled through Register Claim with Lost selected as the reason.
-
-#### 📹 <a href="https://drive.google.com/file/d/11ThdwHfmMm2cLGewoud1nspeVuF64vDg/view?usp=sharing" target="_blank" rel="noopener noreferrer">Shipment Lost Guide video</a>
-
-#### 📹 <a href="https://drive.google.com/file/d/1_5o1i7pWLg2P-DraM0YeY7tgORyV0y7r/view?usp=sharing" target="_blank" rel="noopener noreferrer">Return Lost Guide video</a>
 ---
 
 ## 📦 Stock
@@ -295,30 +279,6 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 
 > New System
 #### 📹 <a href="https://drive.google.com/file/d/1kh7fjXzkOBICnNUd5sx6xVxUft7sRq2J/view?usp=sharing" target="_blank" rel="noopener noreferrer">View guide video</a>
-
-### Updated Stock Setting
-
-#### ✅ Changes
-| Existing System | New System |
-|------------|------------|
-| Inventory > Placeholder | **Stock > Channel Stock Setting tab > 'ERP Update'**|
-
-1. Placeholder feature definition
-    - This feature was used for pre-sales when physical stock existed in ERP but not in OMS because updated stock moved to ERP had not been received.
-2. ERP Update field definition
-    - Stock moved to the online warehouse in ERP is received immediately and shown in the ERP Update field.
-
-:::note
-Because stock moved within ERP can now be received immediately, the Placeholder feature is no longer needed and has been removed. The information can be checked through ERP Update instead.
-:::
-
-> Existing System
-
-![GM OMS Overview](/img/gm_oms_placeholder.png)
-
-> New System
-
-![GM OMS Overview](/img/iic_oms_erpupdate.png)
 
 
 ### Channel Stock Send Status Setting
