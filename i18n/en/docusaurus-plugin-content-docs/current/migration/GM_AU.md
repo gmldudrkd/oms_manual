@@ -83,7 +83,7 @@ There is also a Timezone dropdown. When working with overseas entities, you can 
 ### Return, Exchange, Reshipment List
 | Existing System | New System | 
 |------------|------------|
-| (None) | **Order > Return, Exchange, Reshipment List** | 
+| (None) | **Order > Return List** | 
 
 #### ✅ Changes
 1. Return, exchange, and reshipment cases that were previously checked together in General Orders are now separated into a dedicated list.
@@ -100,27 +100,14 @@ There is also a Timezone dropdown. When working with overseas entities, you can 
 ## ⌛ Order Status
 
 > Order status values have changed.  
-> Status is managed separately for Order, Shipment, Return, and Exchange.
+> Status is managed separately for Order, Shipment, and Return.
  
-### Order Status Comparison (Legacy vs New)
+### Order Status
  
 > In the new system, order status is managed in two separate areas: **Order** and **Shipment**.
  
  
-| Legacy | New · Order | New · Shipment | Description |
-|--------|------------|---------------|------|
-| After | **Pending** | | Customer payment completed |
-| Release | **Collected** | | Order stock allocation after payment completion (1 hour later), or allocation failed |
-| Confirmed | **Partly Confirmed** | | Partial order stock allocation succeeded |
-| Confirmed | **Partial Shipment Requested** | | Partial WMS outbound request created |
-| Req-Allocation | **Shipment Requested** | **Picking Requested** | Full order WMS outbound request created |
-| Allocation | | **Picked** | WMS picking completed |
-| Packed | | **Packed** | WMS packing completed |
-| Shipping | | **Shipped** | Shipment completed from the warehouse |
-| Lost | | **Lost** (`final shipment status`) | Shipment lost during delivery |
-|  |  | **Delivered** (`final shipment status`) | All deliveries for the order are completed |
-| Delivered | **Completed** | **Delivered** (`final shipment status`) | All deliveries for the order are completed |
-| Cancel | **Canceled** | **Canceled** (`final shipment status`)| Order canceled after collection |
+ ![GM OMS Overview](/img/order_status_au.png)
  
 
  
@@ -159,21 +146,7 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 |--------|------------|-----|
 | ReqReturn | **Pending** | Return request completed |
 | ReqPickup | **Pickup Requested** | Return intake in progress |
-| Pickup | **Pickup Ongoing** | Pickup in progress |
-| Receive | **Received** | Awaiting receipt confirmation |
 | Refund | **Refund** | Received; customer refunded |
-
-> Exchange  
-> In the new system, reshipment is processed automatically after Inspected.
-
-| Legacy | New | Description |
-|--------|------------|-----|
-| Req-Exchange | **Pending** | Return request completed |
-| Exch-ReqPickup | **Pickup Requested** | Return intake in progress |
-| Exch-Pickup | **Pickup Ongoing** | Pickup in progress |
-| Exch-Return | **Received** | Awaiting receipt confirmation |
-| Exchange | **Inspected** | Received; before reshipment |
-
 
 👉 For more details about order status codes, refer to the [Status Codes](/docs/reference/status-codes) document.
 
@@ -197,14 +170,13 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 
 
 
-### Return / Exchange / Reshipment
+### Return
  
 #### ✅ Changes
 
 1. The Change Status button has been changed to Register Claim.
-2. Register Claim supports all claim types, including Return, Exchange, Reshipment, and Force Refund.
-3. Pickup Option and Force Refund features have been added.
-    - [Pickup Option > Do Not Request Pickup]: Use when the returned quantity or product is different from what has already been received.  
+2. Register Claim supports all claim types, including Return and Force Refund.
+3. The Force Refund feature has been added.
     - [Force Refund]: Process a refund without receiving the product due to a strong customer complaint or a defect.
 
 > Registration Method  
@@ -275,7 +247,7 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 | Inventory > Safety Stock | **Stock > Online Stock Setting tab > 'Change Safety Stock'**|
 
 > Existing System
-#### 📹 <a href="https://drive.google.com/file/d/1Aq7yHJAv0hzb7f3Q2-cqCezxJD9ZFsgg/view?usp=sharing" target="_blank" rel="noopener noreferrer">View guide video</a>>
+#### 📹 <a href="https://drive.google.com/file/d/1Aq7yHJAv0hzb7f3Q2-cqCezxJD9ZFsgg/view?usp=sharing" target="_blank" rel="noopener noreferrer">View guide video</a>
 
 > New System
 #### 📹 <a href="https://drive.google.com/file/d/1kh7fjXzkOBICnNUd5sx6xVxUft7sRq2J/view?usp=sharing" target="_blank" rel="noopener noreferrer">View guide video</a>

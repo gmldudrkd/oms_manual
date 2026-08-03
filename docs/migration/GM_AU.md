@@ -83,7 +83,7 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 ### Return, Exchange, Reshipment List
 | 기존 시스템 | 신규 시스템 | 
 |------------|------------|
-| (없음) | **Order > Return, Exchange, Reshipment List** | 
+| (없음) | **Order > Return List** | 
 
 #### ✅ 변경 내용
 1. General Orders에서 통합으로 확인 가능하던 반품,교환,재발송이 별도 목록으로 분리.
@@ -100,29 +100,13 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 ## ⌛ Order Status
 
 > 주문 상태 값 변경   
-> Order, Shipment, Return, Exchange 구분해서 상태 관리
+> Order, Shipment, Return 구분해서 상태 관리
  
-### 주문 상태 비교표 (Legacy vs New)
+### 주문 상태
  
 > 신규 시스템에서 주문 상태는 **Order**와 **Shipment** 두 영역으로 분리되어 관리   
  
- 
-| Legacy | New · Order | New · Shipment | 설명 |
-|--------|------------|---------------|------|
-| After | **Pending** | | 고객 결제완료 |
-| Release | **Collected** | | 주문 재고 할당 (결제 완료 후 1시간) 혹은 할당 실패 |
-| Confirmed | **Partly Confirmed** | | 주문 부분 재고 할당 성공 |
-| Confirmed | **Partial Shipment Requested** | | 주문 부분 WMS 출고 지시 |
-| Req-Allocation | **Shipment Requested** | **Picking Requested** | 주문 전체 WMS 출고 지시 |
-| Allocation | | **Picked** | WMS 피킹 완료 |
-| Packed | | **Packed** | WMS 패킹 완료 |
-| Shipping | | **Shipped** | 창고에서 출고 완료 |
-| Lost | | **Lost**(`배송 종결값`) | 출고 중 분실 |
-|  |  | **Delivered**(`배송 종결값`) | 주문의 배송 전체 종결 |
-| Delivered | **Completed** | **Delivered**(`배송 종결값`) | 주문의 배송 전체 종결 |
-| Cancel | **Canceled** | **Canceled** (`배송 종결값`)| 주문 수집 후 취소 |
- 
-
+ ![GM OMS Overview](/img/order_status_au.png)
  
 ### 주요 변경 포인트
  
@@ -159,21 +143,7 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 |--------|------------|-----|
 | ReqReturn | **Pending** | 반품신청완료 |
 | ReqPickup | **Pickup Requested** | 반품 접수 진행 중 |
-| Pickup | **Pickup Ongoing** | 픽업 진행 중 |
-| Receive | **Received** | 입고 확정 대기 |
 | Refund | **Refund** | 입고완료, 고객환불 |
-
-> 교환  
-> New 에선 Inspected 이후 자동 재출고 진행
-
-| Legacy | New | 설명 |
-|--------|------------|-----|
-| Req-Exchange | **Pending** | 반품신청완료 |
-| Exch-ReqPickup | **Pickup Requested** | 반품 접수 진행 중 |
-| Exch-Pickup | **Pickup Ongoing** | 픽업 진행 중 |
-| Exch-Return | **Received** | 입고 확정 대기 |
-| Exchange | **Inspected** | 입고완료, 재출고 전|
-
 
 👉 주문 상태 코드에 대한 자세한 내용은 [Status Codes](/docs/reference/status-codes) 문서를 참고하세요.
 
@@ -197,14 +167,13 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 
 
 
-### Return / Exchange / Reshipment
+### Return
  
 #### ✅ 변경 내용
 
 1. Change Status 버튼은 Register Claim 으로 변경 
-2. Register Claim 내 Return, Exchange, Reshipment, Force Refund 등 모든 Claim 지원
-3. Pickup Option 및 Force Refund 기능 추가
-    - [Pickup Option > Do Not Request Pickup] : 이미 입고된 반품 수량 혹은 제품이 다를 경우  
+2. Register Claim 내 Return, Force Refund 등 모든 Claim 지원
+3. Force Refund 기능 추가
     - [Force Refund] : 고객 강성 혹은 불량으로 인해 입고 없이 환불처리
 
 > 접수방식  
@@ -276,7 +245,7 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 | Inventory > Safety Stock | **Stock > Online Stock Setting 탭 내 'Change Safety Stock'**|
 
 > 기존 시스템
-#### 📹 <a href="https://drive.google.com/file/d/1Aq7yHJAv0hzb7f3Q2-cqCezxJD9ZFsgg/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>>
+#### 📹 <a href="https://drive.google.com/file/d/1Aq7yHJAv0hzb7f3Q2-cqCezxJD9ZFsgg/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>
 
 > 신규 시스템
 #### 📹 <a href="https://drive.google.com/file/d/1kh7fjXzkOBICnNUd5sx6xVxUft7sRq2J/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>
