@@ -28,7 +28,38 @@ sidebar_position: 3
 :::tip
 Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시간 기준으로 데이터를 확인할 수 있어요.
 :::
- 
+
+### User Account Request
+
+1. 로그인 화면 오른쪽 하단 **'Request Account'** 클릭
+2. **'Request Account'** 에서 사용할 계정과 권한을 부여받을 Brand & Corporation 선택 후 전송
+    - Admin 권한의 사용자에 의해 승인될 경우 로그인 가능합니다.
+
+<!-- 이미지 추가 예정: Request Account 화면 -->
+
+### Admin Account Approval
+
+1. 사용자 계정요청 시 슬랙으로 알림발생
+    - 슬랙 채널은 Admin 권한의 사용자만 볼 수 있습니다. (필요 시 IT 팀으로 초대 요청 바랍니다.)
+2. **'View in OMS'** 클릭
+    - Admin 권한의 사용자가 OMS 에 로그인 한 후 클릭 할 경우 승인처리 할 수 있는 화면이 노출됩니다. (하단 이미지 참고)
+    - 권한이 없는 사용자가 접속할 경우 **'No data'** 로 보여집니다.
+3. 사용자 및 요청한 Brand & Corporation 정보 확인 후 승인 (Approve) 혹은 거절 (Reject) 처리
+    - 계정이 승인되면 사용자에게 메일 발송
+
+<!-- 이미지 추가 예정: 슬랙 알림 예시 (Slack Notification Example) / 'View in OMS' 클릭 시 노출되는 화면 -->
+
+### 2-Factor Authentication Registration
+
+1. 관리자가 계정을 승인 후 **최초** 로그인 시 2차인증 번호를 발급받을 수 있는 QR 코드 노출
+    - **PC** : 크롬 브라우저 내 구글 인증도구 설치 후 등록
+        - 🌐 <a href="https://chromewebstore.google.com/detail/authenticator/bhghoamapcdpbohphigoooaddinpkbai" target="_blank" rel="noopener noreferrer">인증 도구 - Chrome 웹 스토어</a>
+    - **Mobile** : 'Microsoft Authenticator' APP 다운로드 후 등록
+2. QR 등록 후 나오는 6자리 인증번호 입력
+3. 최초 등록 이후에는 인증 APP 에 노출되는 6자리 코드를 입력해서 접속
+
+<!-- 이미지 추가 예정: 최초 로그인 시 화면 (First Login Screen) / 최초 등록 이후 로그인 시 화면 -->
+
 ---
 
 ## 📎 Order
