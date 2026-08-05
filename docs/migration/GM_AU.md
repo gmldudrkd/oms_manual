@@ -154,7 +154,7 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 | 기존 시스템 | 신규 시스템 |
 |------------|------------|
 | Req-Allocation 상태에서 주문 취소 가능 - 'Cancel Order' 버튼 사용 (부분 or 전체 취소) | Pending 부터 Shipment 상태가 Picking Requested 상태까지 전까지 'Cancel Order' 가능 (부분 or 전체 취소)|
-|  | Shipment 상태가 Picking Requested 상태에서 'Cancel Shipment' 가능 (출고 전체 취소)|
+|  | Shipment 상태가 Shipped 상태 전까지 'Cancel Shipment' 가능 (출고 전체 취소)|
 
 
 > 기존 시스템
