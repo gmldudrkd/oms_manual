@@ -157,7 +157,7 @@ When an order is in `[Partly Confirmed]` status, the operator must choose whethe
 | Existing System | New System |
 |------------|------------|
 | Orders can be canceled in Req-Allocation status using the 'Cancel Order' button (partial or full cancellation). | 'Cancel Order' can be used from Pending until before the Shipment status becomes Picking Requested (partial or full cancellation). |
-|  | When the Shipment status is Picking Requested, 'Cancel Shipment' can be used (full shipment cancellation). |
+|  | 'Cancel Shipment' can be used until before the Shipment status becomes Shipped (full shipment cancellation). |
 
 
 > Existing System
