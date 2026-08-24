@@ -106,3 +106,102 @@ Increasing safety stock reduces the sellable quantity (Available) by the same am
 :::note To change the channel distribution ratio
 To adjust the distribution ratio itself, go to [Distribution Setting](./distribution-setting).
 :::
+
+---
+
+## Stock Transfer
+
+### 1. Feature Overview
+
+Stock Transfer moves stock between **Undistributed Qty** and **channel Available Qty**.
+
+| Direction | Meaning |
+| --- | --- |
+| `Undistributed → Available` | Pushes stock that has not yet been distributed down to a specific channel's sellable stock (adding stock) |
+| `Available → Undistributed` | Pulls a channel's sellable stock back into undistributed stock (reclaiming stock) |
+
+There are only two key concepts to remember.
+
+- **Undistributed Qty is a shared pool at the SKU level.** If you select multiple channel rows for the same SKU, they all draw from that single pool.
+- **Available Qty is stock at the channel level.** When reclaiming, you can only deduct up to the quantity that channel holds.
+
+> ⚠️ On **Save**, the stock is reflected to the channel **immediately**. There is no separate approval or scheduling step.
+
+---
+
+### 2. Prerequisites
+
+| Condition | Details |
+| --- | --- |
+| Search required | The button only appears once you have run **Search** in the filter and the result grid is displayed |
+| Product Type | All selected items must be **`Single`**. If even one `Bundle` is included, you cannot proceed |
+| Selection unit | Select by **channel row checkbox**, not by product row |
+| Channel Send Status | Stock Transfer is **not restricted** for `OFF` channels |
+| Multiple channels | You may select several channels at once (no limit) |
+
+---
+
+### 3. How to Use
+
+#### Step 1. Search for the target stock
+
+1. Go to **Stock > Overview** → click the **Channel Stock Setting** tab at the top
+2. Enter your conditions in the search filter
+   - `Product Type` defaults to **Single**. If you plan to use Stock Transfer, leave it as is.
+   - Search for the product by `SAP Code`, `SKU Code`, or `SAP Name`
+   - Use the Channel, Channel Send Status, and Pre-order/Safety filters as needed
+3. Click **Search** → the result grid is displayed
+
+#### Step 2. Select channel rows
+
+- Use the **checkboxes** to the left of the `Channel` area in the grid to check the channel rows you want to transfer.
+- Clicking the header checkbox selects **all channel rows** on the current page at once (excluding the `Total` row).
+- ⚠️ **Running Search again or moving to another page clears your selection.** Select the rows and click the button right away.
+
+#### Step 3. Open the Stock Transfer modal
+
+Click the **`Stock Transfer`** button at the top right of the result grid.
+
+#### Step 4. Choose the Transfer Direction
+
+Pick the direction from the toggle at the top right of the modal. It applies to **every row in the modal at once**.
+
+- `Undistributed → Available` (default)
+- `Available → Undistributed`
+
+> ⚠️ Changing the direction **clears every Move Qty you have entered**. Decide the direction first, then enter the quantities.
+
+#### Step 5. Enter Move Qty
+
+Enter the quantity to move in each row's **Move Qty** field.
+
+- Only numbers can be entered (letters and symbols are removed automatically)
+- Rows left blank or set to `0` are **excluded from the transfer**
+- **`MAX` button**: automatically fills in the maximum quantity allowed for that row
+  - `Undistributed → Available`: `Undistributed Qty − the total already entered on other rows for the same SKU`
+  - `Available → Undistributed`: that channel's `Available Qty`
+
+#### Step 6. Save
+
+Do a final check at the bottom of the modal and click **`Save`**.
+
+Information area at the bottom
+
+- `Transfer Row`: the number of rows that will actually be transferred (quantity > 0 and no errors)
+- `FROM ○○○ → TO ○○○` badge: the source and destination for the current direction
+- Warning when everything is valid: `⚠ Clicking 'Save' will instantly move the stock.`
+- Warning when there are errors: `⚠ Some rows exceed the remaining stock.`
+
+Click `Save` → a confirmation popup appears
+
+> `The data being saved will be immediately transferred to the channel. Continue?`
+> - **Continue**: run the transfer
+> - **Leave without saving**: close without saving
+
+On success, a snackbar is shown and the grid refreshes automatically.
+> `Update Successful — Your changes have been successfully applied.`
+
+#### Step 6-1. When the Save button is disabled
+
+- When there is **at least one** row with an error
+- When there are **zero** rows to transfer (all rows are blank or 0)

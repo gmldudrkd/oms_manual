@@ -106,3 +106,102 @@ Available가 **음수(빨간색)**로 보이면 **초과 판매(Overselling)** �
 :::note 채널별 재고 분배 비율을 바꾸려면
 분배 비율(Distribution Ratio) 자체를 조정하려면 [채널 분배 설정](./distribution-setting)에서 합니다.
 :::
+
+---
+
+## Stock Transfer
+
+### 1. 기능 개요
+
+Stock Transfer는 **미분배 재고(Undistributed Qty)** 와 **채널 판매가능 재고(Available Qty)** 사이에서 재고를 옮기는 기능입니다.
+
+| 이동 방향 | 의미 |
+| --- | --- |
+| `Undistributed → Available` | 아직 채널에 분배되지 않은 재고를 특정 채널의 판매가능 재고로 내려줌 (재고 추가 투입) |
+| `Available → Undistributed` | 채널의 판매가능 재고를 회수해서 미분배 재고로 되돌림 (재고 회수) |
+
+핵심 개념 2가지만 기억하면 됩니다.
+
+- **Undistributed Qty는 SKU 단위 공용 재고입니다.** 같은 SKU를 여러 채널 행으로 선택하면 하나의 풀(pool)에서 나눠 쓰게 됩니다.
+- **Available Qty는 채널 단위 재고입니다.** 회수할 때는 해당 채널이 가진 수량까지만 뺄 수 있습니다.
+
+> ⚠️ 저장(Save) 시 **즉시** 채널로 재고가 반영됩니다. 별도의 승인/예약 절차가 없습니다.
+
+---
+
+### 2. 사전 조건
+
+| 조건 | 내용 |
+| --- | --- |
+| 조회 필요 | 검색 필터에서 **Search**를 실행해 결과 그리드가 표시된 상태여야 버튼이 보입니다 |
+| Product Type | 선택한 항목이 **모두 `Single`** 이어야 합니다. `Bundle`이 하나라도 섞이면 진행 불가 |
+| 선택 단위 | 상품 행이 아닌 **채널 행 단위 체크박스**로 선택합니다 |
+| Channel Send Status | `OFF` 채널도 Stock Transfer는 **제한되지 않습니다** |
+| 채널 다중 선택 | 여러 채널을 동시에 선택해도 됩니다 (제한 없음) |
+
+---
+
+### 3. 사용 절차
+
+#### Step 1. 대상 재고 조회
+
+1. **Stock > Overview** 진입 → 상단 **Channel Stock Setting** 탭 클릭
+2. 검색 필터에서 조건 입력
+   - `Product Type`은 기본값이 **Single**입니다. Stock Transfer를 쓸 예정이면 그대로 두세요.
+   - `SAP Code` / `SKU Code` / `SAP Name` 중 하나로 상품 검색
+   - 필요 시 Channel, Channel Send Status, Pre-order/Safety 필터 사용
+3. **Search** 클릭 → 결과 그리드 표시
+
+#### Step 2. 채널 행 선택
+
+- 그리드 `Channel` 영역 왼쪽의 **체크박스**로 이동 대상 채널 행을 체크합니다.
+- 헤더 체크박스를 누르면 현재 페이지의 **모든 채널 행**이 한 번에 선택됩니다 (`Total` 행 제외).
+- ⚠️ **검색을 다시 실행하거나 페이지를 이동하면 선택이 초기화됩니다.** 선택 → 바로 버튼 클릭 순서로 진행하세요.
+
+#### Step 3. Stock Transfer 모달 열기
+
+결과 그리드 오른쪽 상단의 **`Stock Transfer`** 버튼 클릭.
+
+#### Step 4. 이동 방향(Transfer Direction) 선택
+
+모달 상단 우측 토글에서 방향을 고릅니다. **모달 안의 모든 행에 일괄 적용**됩니다.
+
+- `Undistributed → Available` (기본값)
+- `Available → Undistributed`
+
+> ⚠️ 방향을 바꾸면 **입력한 Move Qty가 전부 초기화**됩니다. 방향을 먼저 정하고 수량을 입력하세요.
+
+#### Step 5. Move Qty 입력
+
+각 행의 **Move Qty** 칸에 이동할 수량을 입력합니다.
+
+- 숫자만 입력됩니다 (문자·기호는 자동 제거)
+- 빈 값 또는 `0`인 행은 **이동 대상에서 제외**됩니다
+- **`MAX` 버튼**: 그 행에 넣을 수 있는 최대 수량이 자동 입력됩니다
+  - `Undistributed → Available` 방향: `Undistributed Qty − 같은 SKU 다른 행에 이미 입력한 합계`
+  - `Available → Undistributed` 방향: 해당 채널의 `Available Qty`
+
+#### Step 6. 저장
+
+모달 하단에서 최종 확인 후 **`Save`** 클릭.
+
+하단 정보 영역
+
+- `Transfer Row`: 실제로 이동될 행 수 (수량 > 0 & 오류 없음)
+- `FROM ○○○ → TO ○○○` 배지: 현재 방향의 출발/도착 구분
+- 정상 상태일 때 경고: `⚠ Clicking 'Save' will instantly move the stock.`
+- 오류가 있을 때 경고: `⚠ Some rows exceed the remaining stock.`
+
+`Save` 클릭 → 확인 팝업
+
+> `The data being saved will be immediately transferred to the channel. Continue?`
+> - **Continue**: 이동 실행
+> - **Leave without saving**: 저장하지 않고 닫기
+
+성공하면 스낵바가 표시되고 그리드가 자동으로 갱신됩니다.
+> `Update Successful — Your changes have been successfully applied.`
+
+#### Step 6-1. Save 버튼이 비활성화되는 경우
+
+- 오류 행이 **1건이라도** 있을 때
+- 이동 대상 행이 **0건**일 때 (모든 행이 빈 값 또는 0)
