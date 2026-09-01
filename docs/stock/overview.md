@@ -178,7 +178,7 @@ Stock Transfer는 **미분배 재고(Undistributed Qty)** 와 **채널 판매가
 - 숫자만 입력됩니다 (문자·기호는 자동 제거)
 - 빈 값 또는 `0`인 행은 **이동 대상에서 제외**됩니다
 - `Available → Undistributed` 방향에서 **이동가능한 수량은** `Transferable` 값으로 확인할 수 있습니다.
-  - Transferable Qty : {Available - PreOrder} Qty
+  - `Transferable Qty = {Available - PreOrder} Qty`
   - *프리오더로 입력한 수량은 가상의 재고이기에 이동이 불가*
 - **`Max` 버튼**: 그 행에 넣을 수 있는 최대 수량이 자동 입력됩니다
   - `Undistributed → Available` 방향: `Undistributed Qty − 같은 SKU 다른 행에 이미 입력한 합계`

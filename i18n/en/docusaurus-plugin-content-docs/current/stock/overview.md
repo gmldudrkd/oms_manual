@@ -178,7 +178,7 @@ Enter the quantity to move in each row's **Move Qty** field.
 - Only numbers can be entered (letters and symbols are removed automatically)
 - Rows left blank or set to `0` are **excluded from the transfer**
 - In the `Available → Undistributed` direction, you can check **how much can actually be moved** in the `Transferable` value.
-  - Transferable Qty : {Available - PreOrder} Qty
+  - `Transferable Qty = {Available - PreOrder} Qty`
   - *Quantities entered as pre-order are virtual stock and cannot be moved*
 - **`Max` button**: automatically fills in the maximum quantity allowed for that row
   - `Undistributed → Available`: `Undistributed Qty − the total already entered on other rows for the same SKU`
