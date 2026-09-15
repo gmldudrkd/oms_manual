@@ -109,6 +109,30 @@ To adjust the distribution ratio itself, go to [Distribution Setting](./distribu
 
 ---
 
+## Sending Stock Quantities to the Channel Immediately (Send Available Qty)
+
+This feature **sends the current Available (sellable) quantity to the channel immediately**. Use it when you need to pause sales, or **when stock has to be reflected after a pre-order ends**.
+
+| Item | Description |
+|------|-------------|
+| **Location** | Stock > Overview > **Channel Stock Setting** tab > `Send Available Qty` button |
+| **Scope** | Based on the Available quantity, it can be applied to **only one channel at a time** |
+
+### Steps
+
+1. Check the selected product's information and its current **Available Qty**.
+2. Click the **`Send Available Qty`** button.
+3. Review the Available Qty as of the moment you clicked.
+4. Click **`Save`** and the stock is sent to that channel **immediately**.
+
+![Send stock quantity to channel immediately](/img/send_available_qty.png)
+
+:::warning
+On Save the change is applied to the channel **immediately**, with no separate approval or scheduling step.
+:::
+
+---
+
 ## Stock Transfer
 
 ### 1. Feature Overview

@@ -37,7 +37,7 @@ Choose a **search field** from the dropdown to the left of the search box, then 
 | **Order Status Filter** | Multi-select order statuses (Pending, Collected, Completed, etc.) |
 | **Fulfillment Status Filter** | Multi-select fulfillment statuses (Picking Requested through Delivered) |
 | **Channel Filter** | Sales channel (within your permission scope) |
-| **Receive Methods / Types / Tags** | Receive method (delivery/pickup), order type (NORMAL/GIFT/RX), tags (PREORDER, etc.) |
+| **Receive Methods / Types / Tags** | Receive method (delivery/pickup), order type (GIFT/RX/LENS_ONLY), tags (PRE-ORDER, etc.) |
 
 :::warning Note when searching completed/canceled items
 When searching for closed orders such as Completed/Canceled/Deleted, you **must specify a Period**. The data volume is too large to search without one.
@@ -59,7 +59,7 @@ The search results table displays the following information.
 | **Shipment Status** | Fulfillment status chip |
 | Order Date | Order date |
 | Recipient Name / Phone | Recipient information |
-| Shipment No / Tracking No | Shipment number, tracking number |
+| Shipment No / Tracking No | Shipment number, tracking number (use the **copy icon** next to the shipment number to copy it to the clipboard) |
 
 - Use **"Refresh"** at the top right to update the list.
 - Selecting rows enables **"Bulk Cancel"**. → See [Order Cancellation](./order-cancel)
@@ -86,6 +86,21 @@ Click an **Order No** in the list to open the details screen. The tabs at the to
 - **Fulfillment info**: Shipment number, tracking number, fulfillment status
 - **Payment info**: Payment method, amount, tax, shipping fee, currency
 - **Refund history**: Refunds arising from returns/exchanges
+
+#### How Ordered Product Info Is Displayed
+
+The ordered product area is split into **one row per product**, so you can check each product's price and claim history separately.
+
+| Display | Description |
+|---------|-------------|
+| **Individual rows** | Each product in the order is shown as its own product-level row. |
+| **Bundle components** | Single products grouped into a bundle are each shown as a separate row. |
+| **Paid product prices** | Products sold for a fee, such as packages and lenses, appear as individual rows with their own price. |
+| **Reshipped quantity** | For individual Claim–Reshipment processing, you can see which product was reshipped and how many, per product. |
+
+:::note
+Products are shown separately, but **NUF bundle separation is not supported yet.**
+:::
 
 ### Action Buttons That Appear by Status
 

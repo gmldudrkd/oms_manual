@@ -48,6 +48,17 @@ If you choose **Do Not Request Pickup**, enter the **Tracking Information (Carri
 
 ---
 
+## Package-Only Exchange
+
+When only the package (case, etc.) is defective, you can **exchange just the package, separately from the main product**.
+
+- In **Register Claim → Exchange**, select **only the package** among the bundle components when choosing the products to exchange.
+- The main product is excluded from collection and exchange; only the package is collected and reshipped.
+
+![exchagne package Info](/img/exchagne_package.png)
+
+---
+
 ## Exchange Processing Steps
 
 Expand the exchange card on the **EXCHANGE tab** of the order details screen to process it.
@@ -61,6 +72,10 @@ Expand the exchange card on the **EXCHANGE tab** of the order details screen to 
 
 Once the original product is received and reaches **Received** status, inspect it.
 
+:::note
+This applies only to Brand & Corps that run their own logistics without a WMS. When receipt information is received from a WMS, grading is confirmed automatically along with it.
+:::
+
 <video controls width="100%" style={{maxWidth: '900px', borderRadius: '8px'}}>
   <source src="/oms_manual/video/iic_oms_exchange_grading.mov" />
   Your browser does not support the video tag.
@@ -72,10 +87,39 @@ Once the original product is received and reaches **Received** status, inspect i
 
 ### 3. Request Shipment of New Product (Request Shipment)
 
-1. When the status becomes **Inspected**, the **"Request Shipment"** button appears.
-2. Click it to request shipment of the **new product (Resend)**.
+**If stock is available for the reshipment**
+
+1. In the Inspected status, if stock is available for the reshipment, the new product's shipment is requested automatically.
+2. In the **Resend Shipment Information** of the EXCHANGE tab, you can check the new product's shipment number, tracking number, and status.
+3. Once the new product has been sent, the status becomes **Exchanged**.
+
+**If no stock is available for the reshipment**
+
+1. The status stays at **Inspected** and the **"Request Shipment"** button appears.
+2. Click it to request shipment of the new product.
+    - If there is no stock, an "out of stock" error notification appears.
 3. In the **Resend Shipment Information** of the EXCHANGE tab, you can check the new product's shipment number, tracking number, and status.
 4. Once the new product has been sent, the status becomes **Exchanged**.
+
+:::note
+Requesting shipment of the new product is possible regardless of status. In other words, you can request shipment up front with the 'Request Shipment' button before the original product is received.
+The button is shown in the **[Pickup Requested, Pickup Ongoing, Received]** statuses.
+:::
+
+#### When it stays at Inspected due to no stock — automatic allocation and shipment
+
+Items held at `Inspected` because no stock was available are treated as **unallocated shipments** and are **automatically allocated and shipped once a day, when the closing stock is received and distributed**. You no longer need to press Request Shipment manually whenever stock arrives.
+
+:::note Allocation basis for exchange shipments
+The allocation basis for exchange shipments is the **stock distributed to the channel**.
+
+- When a **regular shipment** is unallocated → allocated first from the quantity received as closing stock, before channel distribution
+- When an **exchange shipment** is unallocated → allocated from the quantity distributed to each channel as closing stock (no shipment if there is no distributed stock)
+:::
+
+:::warning Exchanges and reshipments consume channel stock
+**Reshipments arising from exchanges, defects, or losses — not from an order — also consume channel stock.** Without channel stock the reshipment cannot proceed, so use [Stock Transfer](../stock/overview#stock-transfer) to move stock into the channel first.
+:::
 
 ---
 

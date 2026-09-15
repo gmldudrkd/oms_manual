@@ -12,13 +12,31 @@ sidebar_position: 2
 |------|------|
 | **Order No** | OMS 주문번호 |
 | **Purchase No** | 판매 채널 원주문번호 |
-| **Receive Method** | 수령방법 — Delivery(배송) / Store Pickup(매장픽업) |
-| **Order Type** | 주문유형 — NORMAL / GIFT / RX |
-| **Tags** | 주문 태그 — 예: PREORDER(사전주문) |
+| **Receive Method** | 수령방법 — `DELIVERY`(배송) / `STORE_PICKUP`(매장픽업) |
+| **Order Type** | 주문유형 — `GIFT` / `RX` / `LENS_ONLY` (일반 주문은 값 없음) |
+| **Tags** | 주문 태그 — 예: `PRE-ORDER`(사전주문) |
+| **Shipping Fee** | 주문 배송비. 주문 엑셀 추출 시 `Tax` 옆에 노출되며 전체 제품 row에 표시됩니다 |
+| **Pickup** | (반품/교환) 회수 지시 여부 — `Requested` / `Not Requested` |
+| **Return Method** | (반품) 회수 수단 — `PARCEL` / `IN STORE` / `FORCE REFUND` |
 | **Orderer** | 주문자 정보 (이름/이메일/전화) |
 | **Recipient** | 수령인 정보 (이름/전화/주소) |
 | **Shipment No** | 출고번호 |
 | **Tracking No** | 택배 송장번호 |
+
+### 수령방식 · 주문유형 · 태그 조합
+
+주문 정보에 따라 다음과 같이 값이 조합됩니다.
+
+| 주문 정보 | Receive Method | Type | Tag |
+|-----------|----------------|------|-----|
+| Delivery | `DELIVERY` | — | — |
+| Delivery + Gift | `DELIVERY` | `GIFT` | — |
+| Pickup | `STORE_PICKUP` | — | — |
+| Pre-order + Pickup | `STORE_PICKUP` | — | `PRE-ORDER` |
+| RX | `DELIVERY` | `RX` | — |
+| Pre-order | `DELIVERY` | — | `PRE-ORDER` |
+| Lens Only | `DELIVERY` | `LENS_ONLY` | — |
+| Pre-order + Pickup + Gift | `STORE_PICKUP` | `GIFT` | `PRE-ORDER` |
 
 ## 주문 상품 수량 필드
 

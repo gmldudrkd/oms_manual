@@ -26,6 +26,7 @@ OMS의 모든 작업은 **현재 상태에서 무엇이 가능한지**에 따라
 
 | 상태 | 의미 | 출고 취소 | 가능한 클레임 |
 |------|------|:--------:|---------------|
+| **Shipment Awaiting** | 재고 할당 후 채널이 자체 발행한 송장 확인 대기 (파페치 등 외부채널) | ✅ | Shipment Cancel |
 | **Picking Requested** | WMS에 피킹 지시 전달 | ✅ (WMS 확인 필요) | Shipment Cancel |
 | **Picking Rejected** | 재고 부족 등 피킹 실패 (재출고/취소 가능) | ✅ | Shipment Cancel |
 | **Picked** | 피킹 완료 | ❌ | — |

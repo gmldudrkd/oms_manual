@@ -12,13 +12,31 @@ This is a summary of the meaning of the items (fields) that appear frequently on
 |------|------|
 | **Order No** | The OMS order number |
 | **Purchase No** | The original order number from the sales channel |
-| **Receive Method** | The receiving method — Delivery / Store Pickup |
-| **Order Type** | The order type — NORMAL / GIFT / RX |
-| **Tags** | Order tags — e.g. PREORDER |
+| **Receive Method** | The receiving method — `DELIVERY` / `STORE_PICKUP` |
+| **Order Type** | The order type — `GIFT` / `RX` / `LENS_ONLY` (empty for normal orders) |
+| **Tags** | Order tags — e.g. `PRE-ORDER` |
+| **Shipping Fee** | The order's shipping fee. In the order Excel export it appears next to `Tax` and is shown on every product row |
+| **Pickup** | (Return/Exchange) Whether a pickup instruction was sent — `Requested` / `Not Requested` |
+| **Return Method** | (Return) How the item is collected — `PARCEL` / `IN STORE` / `FORCE REFUND` |
 | **Orderer** | The orderer's information (name / email / phone) |
 | **Recipient** | The recipient's information (name / phone / address) |
 | **Shipment No** | The shipment number |
 | **Tracking No** | The courier tracking number |
+
+### Receive Method · Type · Tag Combinations
+
+Values are combined according to the order information as follows.
+
+| Order information | Receive Method | Type | Tag |
+|-------------------|----------------|------|-----|
+| Delivery | `DELIVERY` | — | — |
+| Delivery + Gift | `DELIVERY` | `GIFT` | — |
+| Pickup | `STORE_PICKUP` | — | — |
+| Pre-order + Pickup | `STORE_PICKUP` | — | `PRE-ORDER` |
+| RX | `DELIVERY` | `RX` | — |
+| Pre-order | `DELIVERY` | — | `PRE-ORDER` |
+| Lens Only | `DELIVERY` | `LENS_ONLY` | — |
+| Pre-order + Pickup + Gift | `STORE_PICKUP` | `GIFT` | `PRE-ORDER` |
 
 ## Order Item Quantity Fields
 

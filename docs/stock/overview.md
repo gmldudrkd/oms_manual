@@ -109,6 +109,30 @@ Available가 **음수(빨간색)**로 보이면 **초과 판매(Overselling)** �
 
 ---
 
+## 재고 수량 채널 즉시 전송 (Send Available Qty)
+
+현재 **Available(판매 가능) 수량을 채널에 즉시 전송**하는 기능입니다. 판매를 잠시 중단하거나 **프리오더 종료 후 재고 반영이 필요할 때** 사용합니다.
+
+| 항목 | 내용 |
+|------|------|
+| **위치** | Stock > Overview > **Channel Stock Setting** 탭의 `Send Available Qty` 버튼 |
+| **적용 단위** | Available 수량 기준으로 **한 번에 하나의 채널에만** 적용 가능 |
+
+### 사용 절차
+
+1. 선택한 제품의 정보와 현재 **Available Qty**를 확인합니다.
+2. **`Send Available Qty`** 버튼을 클릭합니다.
+3. 클릭 시점의 Available Qty 정보를 확인합니다.
+4. **`Save`** 를 클릭하면 **즉시** 해당 채널로 재고가 전송됩니다.
+
+![재고 수량 채널 즉시 전송](/img/send_available_qty.png)
+
+:::warning
+Save 시 별도 승인·예약 없이 **즉시** 채널에 반영됩니다.
+:::
+
+---
+
 ## Stock Transfer
 
 ### 1. 기능 개요

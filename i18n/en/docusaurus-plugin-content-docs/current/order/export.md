@@ -28,6 +28,15 @@ Use the **Order → Export** menu on the left to download order-related data as 
 
 ---
 
+## Key Columns in the Excel File
+
+| Column | Description |
+|--------|-------------|
+| **Shipping Fee** | The order's shipping fee. It appears next to `Tax`, and **the per-order shipping fee is shown on every product row of that order.** (Used by brands that charge shipping, such as ATS international delivery and NUF.) |
+| **FORCE REFUND** | Whether the return was registered as a forced refund. Visible when exporting the `RETURN` type. → [Return Processing](./return#checking-how-a-return-was-registered-pickup--return-method) |
+
+---
+
 ## Download Steps
 
 1. Select the data type to download from the **Type** dropdown.

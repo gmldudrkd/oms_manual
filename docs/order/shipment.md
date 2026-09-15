@@ -12,6 +12,7 @@ sidebar_position: 4
 
 ```mermaid
 graph LR
+    S[Shipment Awaiting<br/>송장 확인 대기] -.-> A
     A[Picking Requested<br/>피킹 요청] --> B[Picked<br/>피킹 완료]
     B --> C[Packed<br/>포장 완료]
     C --> D[Shipped<br/>배송 시작]
@@ -22,6 +23,7 @@ graph LR
 
 | 상태 | 의미 | 운영자가 할 일 |
 |------|------|----------------|
+| **Shipment Awaiting** | 재고 할당(Collected) 이후 **채널이 자체 발행한 송장을 확인하는 단계** | 송장 수신 대기 |
 | **Picking Requested** | WMS에 피킹 지시 전달됨 | 필요 시 출고 취소 가능(WMS 확인 필요) |
 | **Picking Rejected** | 재고 부족 등으로 피킹 실패 | 재출고(Reshipment) 또는 주문 취소 |
 | **Picked / Packed** | 피킹·포장 완료 | 대기(취소 불가) |
@@ -30,6 +32,10 @@ graph LR
 | **Lost** | 배송 중 분실 | 강제 환불 또는 재출고 |
 
 전체 상태별 가능한 작업은 [상태 코드표](../reference/status-codes)에 정리되어 있습니다.
+
+:::note Shipment Awaiting 은 어떤 경우에 나타나나요?
+파페치처럼 **송장을 채널이 자체 발행하는 외부채널**에서 사용됩니다. 재고 할당(Collected)이 끝난 뒤 채널로부터 송장을 수신할 때까지 `Shipment Awaiting` 상태로 대기하며, 송장이 확인되면 출고가 진행됩니다. 화면의 **Status Guide**에서도 동일한 설명을 확인할 수 있습니다.
+:::
 
 ---
 

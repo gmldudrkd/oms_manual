@@ -12,6 +12,7 @@ Shipment is the process of picking, packing, and delivering products to the cust
 
 ```mermaid
 graph LR
+    S[Shipment Awaiting<br/>Awaiting tracking number] -.-> A
     A[Picking Requested<br/>Picking requested] --> B[Picked<br/>Picking complete]
     B --> C[Packed<br/>Packing complete]
     C --> D[Shipped<br/>Shipping started]
@@ -22,6 +23,7 @@ graph LR
 
 | Status | Meaning | What the operator should do |
 |------|------|----------------|
+| **Shipment Awaiting** | After stock allocation (Collected), **awaiting the tracking number issued by the channel itself** | Wait for the tracking number |
 | **Picking Requested** | Picking instruction sent to WMS | Shipment can be canceled if needed (WMS confirmation required) |
 | **Picking Rejected** | Picking failed due to insufficient stock, etc. | Re-Ship or cancel the order |
 | **Picked / Packed** | Picking/packing complete | Wait (cannot cancel) |
@@ -30,6 +32,10 @@ graph LR
 | **Lost** | Lost during delivery | Force refund or reshipment |
 
 The actions available for each status are summarized in the [Status Code Table](../reference/status-codes).
+
+:::note When does Shipment Awaiting appear?
+It is used for **external channels that issue their own tracking numbers**, such as Farfetch. After stock allocation (Collected) the shipment waits in `Shipment Awaiting` until the tracking number is received from the channel; once it is confirmed, the shipment proceeds. The same description is shown in the **Status Guide** on screen.
+:::
 
 ---
 

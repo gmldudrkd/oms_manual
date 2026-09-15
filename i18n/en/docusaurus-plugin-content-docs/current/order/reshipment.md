@@ -14,6 +14,17 @@ A reshipment is **resending an item whose shipment failed or was lost**. The sam
 |-----------|-----------------|
 | **Picking Rejected** | Shipment failed due to insufficient stock, etc. → reship after securing stock |
 | **Delivery Lost (Lost)** | Lost during delivery → a new shipment is created when reshipment is chosen |
+| **Manual registration (Register Claim)** | Registered directly by an operator when only a **shipment without collection** is needed, e.g. for defects or losses |
+
+### Registering a Reshipment Manually
+
+On the order details screen, selecting **Register Claim → Claim Type = Reshipment** creates **a shipment only**, with no pickup (collection) step. It corresponds to a manual shipment, and is used when a product must be sent again — for a defect or a loss — but the original product does not need to be collected.
+
+Items registered this way appear in **Order → Reshipment List** and on the **RESHIPMENT tab** of the order details.
+
+:::warning Reshipments consume channel stock
+**Reshipments arising from exchanges, defects, or losses — not from an order — also deduct channel stock.** Without channel stock the reshipment cannot proceed, so use [Stock Transfer](../stock/overview#stock-transfer) to move stock into the channel first.
+:::
 
 ---
 

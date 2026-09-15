@@ -26,6 +26,7 @@ Every action in the OMS is determined by **what is possible in the current statu
 
 | Status | Meaning | Cancel Shipment | Available Claims |
 |------|------|:--------:|---------------|
+| **Shipment Awaiting** | Awaiting the tracking number issued by the channel after stock allocation (external channels such as Farfetch) | ✅ | Shipment Cancel |
 | **Picking Requested** | Picking instruction sent to the WMS | ✅ (WMS confirmation required) | Shipment Cancel |
 | **Picking Rejected** | Picking failed due to insufficient stock, etc. (reshipment/cancellation possible) | ✅ | Shipment Cancel |
 | **Picked** | Picking complete | ❌ | — |

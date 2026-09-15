@@ -32,10 +32,24 @@ graph LR
 | **Refunded** | Refund complete | (Closed) |
 | **Canceled** | Return canceled | (Closed) |
 
-There are two **Return Methods**.
+---
 
-- **PARCEL**: Collected by courier (pickup instruction required)
-- **IN_STORE**: Customer returns the item directly to a store
+## Checking How a Return Was Registered (Pickup / Return Method)
+
+The collection method differs depending on how the return was registered. The **Pickup** field and **Return Method** on the return details screen tell you which case it is.
+
+| Registration case | Pickup | Return Method |
+|-------------------|--------|---------------|
+| **Force Refund** | `Not Requested` | `FORCE REFUND` |
+| **Return + pickup not requested** | `Not Requested` | `PARCEL` |
+| **Return + pickup requested** | `Requested` | `PARCEL` |
+| **BORIS** (returned in store) | `Not Requested` | `IN STORE` |
+
+- **Pickup**: Whether a pickup (collection) instruction was sent — `Requested` / `Not Requested`
+- **Return Method**: How the item is collected — `PARCEL` (courier) / `IN STORE` (returned in store) / `FORCE REFUND` (forced refund with no collection)
+- Force-refund items also show **`FORCE REFUND`** at the top of the return details, and **the forced-refund flag is included in the Excel export.**
+
+![pickup Info](/img/pickup_info.png)
 
 ---
 
@@ -80,6 +94,10 @@ If you need to change the pickup address or contact, use the **"Edit Recipient I
 
 When the product arrives at the warehouse, the status becomes **Received**. At this point, assign an **inspection grade (Grade)** and then refund.
 
+:::note
+This applies only to Brand & Corps that run their own logistics without a WMS. When receipt information is received from a WMS, grading is confirmed automatically along with it.
+:::
+
 <video controls width="100%" style={{maxWidth: '900px', borderRadius: '8px'}}>
   <source src="/oms_manual/video/iic_oms_return_grading.mov" />
   Your browser does not support the video tag.
@@ -99,6 +117,19 @@ When the product arrives at the warehouse, the status becomes **Received**. At t
 
 :::warning When you need to refund immediately without inspection
 If a serious defect requires an immediate refund without inspection, process it as a **Force Refund**. Such items display a **"FORCE REFUND"** badge on the return card.
+:::
+
+---
+
+## Lost Returns
+
+When processing an item lost during delivery as a return, **select `Lost` as the return reason**.
+
+- With a `Lost` return reason, the loss information is also sent to SAP and **handled in SAP's LOST warehouse**.
+- It is therefore not booked as sales (−) / inventory (+) like a normal return, and operators no longer need to reconcile lost items manually.
+
+:::note
+For the procedure of marking a shipment as lost (mark Lost → choose force refund / reshipment), see [Shipment and Delivery Tracking — Handling Loss (Lost)](./shipment#분실lost-처리).
 :::
 
 ---

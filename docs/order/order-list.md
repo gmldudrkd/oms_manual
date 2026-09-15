@@ -37,7 +37,7 @@ sidebar_position: 2
 | **Order Status Filter** | 주문 상태 복수 선택 (Pending, Collected, Completed 등) |
 | **Fulfillment Status Filter** | 출고 상태 복수 선택 (Picking Requested ~ Delivered) |
 | **Channel Filter** | 판매 채널 (권한 범위 내) |
-| **Receive Methods / Types / Tags** | 수령방법(배송/픽업), 주문유형(NORMAL/GIFT/RX), 태그(PREORDER 등) |
+| **Receive Methods / Types / Tags** | 수령방법(배송/픽업), 주문유형(GIFT/RX/LENS_ONLY), 태그(PRE-ORDER 등) |
 
 :::warning 완료·취소 건 조회 시 주의
 Completed/Canceled/Deleted 등 종료된 주문을 조회할 때는 **기간(Period)을 반드시 지정**해야 합니다. 데이터가 많아 기간 없이 조회할 수 없습니다.
@@ -59,7 +59,7 @@ Completed/Canceled/Deleted 등 종료된 주문을 조회할 때는 **기간(Per
 | **Shipment Status** | 출고 상태 칩 |
 | Order Date | 주문일 |
 | Recipient Name / Phone | 수령인 정보 |
-| Shipment No / Tracking No | 출고번호·송장번호 |
+| Shipment No / Tracking No | 출고번호·송장번호 (출고번호 옆 **복사 아이콘**으로 번호를 클립보드에 복사할 수 있습니다) |
 
 - 우측 상단 **"Refresh"**로 목록을 갱신합니다.
 - 행을 선택하면 **"Bulk Cancel"**(일괄 취소)을 사용할 수 있습니다. → [주문 취소](./order-cancel) 참고
@@ -86,6 +86,21 @@ Completed/Canceled/Deleted 등 종료된 주문을 조회할 때는 **기간(Per
 - **출고 정보**: 출고번호, 송장번호, 출고 상태
 - **결제 정보**: 결제수단, 금액, 세금, 배송비, 통화
 - **환불 이력**: 반품/교환으로 발생한 환불 내역
+
+#### 주문 상품(Ordered Product Info) 표시 방식
+
+주문 상품 영역은 **제품 단위 row**로 분리되어 표시됩니다. 제품별 가격과 클레임 처리 내역을 각각 확인할 수 있습니다.
+
+| 표시 항목 | 내용 |
+|-----------|------|
+| **개별 row 표시** | 주문에 포함된 제품이 제품 단위 row로 분리되어 표시됩니다. |
+| **번들 구성품 노출** | 번들(Bundle)에 묶인 싱글 제품이 각각 별도 row로 표시됩니다. |
+| **유상 제품 가격** | 패키지·렌즈처럼 유상으로 판매되는 제품이 개별 row로 표시되고, 제품별 가격이 함께 노출됩니다. |
+| **Reshipped 수량** | 개별 Claim–Reshipment 처리 시 어떤 제품이 몇 개 재출고되었는지 제품별 수량으로 확인할 수 있습니다. |
+
+:::note
+제품별로 분리되어 표시되지만 **NUF 번들 분리 처리는 아직 지원하지 않습니다.**
+:::
 
 ### 상태에 따라 나타나는 작업 버튼
 

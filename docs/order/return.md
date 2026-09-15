@@ -32,10 +32,24 @@ graph LR
 | **Refunded** | 환불 완료 | (종료) |
 | **Canceled** | 반품 취소됨 | (종료) |
 
-**반품 방법(Return Method)**은 두 가지입니다.
+---
 
-- **PARCEL**: 택배로 회수(회수 지시 필요)
-- **IN_STORE**: 고객이 매장에 직접 반납
+## 반품 상세의 접수 방식 확인 (Pickup / Return Method)
+
+반품은 접수 경로에 따라 회수 방식이 다릅니다. 반품 상세 화면의 **Pickup** 필드와 **Return Method**로 어떤 방식으로 접수된 건인지 구분할 수 있습니다.
+
+| 접수 케이스 | Pickup | Return Method |
+|-------------|--------|---------------|
+| **강제환불(Force Refund)** | `Not Requested` | `FORCE REFUND` |
+| **Return + 픽업 미요청** | `Not Requested` | `PARCEL` |
+| **Return + 픽업 요청** | `Requested` | `PARCEL` |
+| **BORIS**(매장 반납) | `Not Requested` | `IN STORE` |
+
+- **Pickup**: 회수(픽업) 지시를 보낸 건인지 여부 — `Requested` / `Not Requested`
+- **Return Method**: 회수 수단 — `PARCEL`(택배 회수) / `IN STORE`(매장 반납) / `FORCE REFUND`(회수 없는 강제환불)
+- 강제환불 건은 반품 상세 상단에 **`FORCE REFUND`** 가 함께 표시되며, **엑셀 Export 시에도 강제환불 여부를 확인할 수 있습니다.**
+
+![pickup Info](/img/pickup_info.png)
 
 ---
 
@@ -107,6 +121,19 @@ WMS를 통하지 않는 '자가물류' 를 하는 Brand & Corp 에만 해당되�
 
 :::warning 검수 없이 즉시 환불해야 할 때
 심각한 하자 등으로 검수 없이 바로 환불해야 하는 경우 **강제 환불(Force Refund)**로 처리합니다. 이런 건은 반품 카드에 **"FORCE REFUND"** 배지가 표시됩니다.
+:::
+
+---
+
+## 분실 반품 처리 (Lost)
+
+배송 중 분실된 건을 반품으로 처리할 때는 **반품 사유를 `Lost`로 선택**합니다.
+
+- 반품 사유가 `Lost`이면 SAP에 분실 관련 정보가 함께 전달되어 **SAP의 LOST 창고에서 처리**됩니다.
+- 따라서 일반 반품처럼 매출(−)·재고(+)로 잡히지 않으며, 운영자가 분실 건만 따로 수기 정리할 필요가 없습니다.
+
+:::note
+출고 상태에서 분실을 처리하는 절차(Lost 표시 → 강제 환불 / 재출고 선택)는 [출고와 배송 추적 — 분실(Lost) 처리](./shipment#분실lost-처리)를 참고하세요.
 :::
 
 ---
