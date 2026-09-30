@@ -1,5 +1,8 @@
 {
   "label": "Promotion",
   "position": 6.3,
-  "link": { "type": "generated-index", "description": "Create/edit/view promotions such as GWP and packaging benefits, with trigger/reward setup." }
+  "link": {
+    "type": "generated-index",
+    "description": "View, create and edit GWP and packaging benefit promotions (Target/Reward setup), and manage templates and multi-channel registration."
+  }
 }
