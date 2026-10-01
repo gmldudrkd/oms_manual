@@ -197,7 +197,7 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 
 
 
-### Return / Exchange / Reshipment
+### Claim 처리 (Return / Exchange / Reshipment)
  
 #### ✅ 변경 내용
 
@@ -214,22 +214,79 @@ Timezone 드롭다운도 함께 있어요. 해외 법인 담당 시 현지 시�
 | Order > Change Status | **Order > Register Claim**|
 | Order > Manually-Shipemnt | **Order > Register Claim > Reshipment**|
 
-
-> 기존 시스템
-
-#### 📹 <a href="https://drive.google.com/file/d/19q2fHNf729mxFJfJ6XEf9ix3jOc3NTnI/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>
-
 > 신규 시스템
 
 #### 📹 <a href="https://drive.google.com/file/d/1-SNRGJRRoQXKi9KyRQUmrs8FKWLVU_sI/view?usp=sharing" target="_blank" rel="noopener noreferrer">Guide 영상 보기</a>
 
+---
 
-### 교환 입고 시 수기 확정처리
-- 자동 확정이 불가한 경우 확정처리가 중단되어 수기 확정 처리 필요 시 사용
-  - Case : 반품배송비를 "계좌이체" 로 전달할 경우
+#### Pickup Option 선택
 
-#### 교환 입고 Grading 
-  - 교환 제품이 입고되고 [Inspect] 상태일 때 'Exchange' 버튼 활성화
+주문 상세에서 **Register Claim → Claim Type을 Return, Exchange**로 선택하면 **Pickup Option**이 함께 나타납니다. 이 옵션으로 OMS가 회수(픽업) 지시를 보낼지 여부를 결정합니다.
+
+| Pickup Option | 동작 | 사용 시점 |
+|---------------|------|-----------|
+| **Request Pickup** | 회수(픽업) 지시를 진행합니다. | 일반적인 반품 — 회수가 필요한 경우 |
+| **Do Not Request Pickup** | 픽업 없이 반품을 생성합니다. | 이미 수거가 완료됐거나 WMS로부터 수거 상태를 수신할 수 있는 경우 |
+
+**Do Not Request Pickup**을 선택하면 이미 수거된 **Tracking Information(반송장 정보 — Carrier·송장번호)**을 입력합니다. 주로 다음과 같은 경우에 사용합니다.
+
+- 이미 수기로 WMS에 제품이 입고·처리 완료되어, 시스템상으로만 환불하면 되는 경우
+- 고객이 직접 반송을 진행한 경우
+- 입고된 제품이 신청한 제품과 다를 때, 기존 반품을 취소하고 입고된 제품을 재선택해 반품을 신청하는 경우
+
+:::tip Do Not Request Pickup vs. Force Refund
+둘 다 **픽업 요청 없이 반품을 생성**한다는 점은 같지만, **WMS에서 반품 처리 상태를 수신할 수 있는지**가 다릅니다.
+
+- **수신 가능** → **Do Not Request Pickup** + Tracking Information 입력 (입고·검수 후 환불)
+- **수신 불가** → **Force Refund**(강제 환불, WMS 상태 수신 없이 즉시 환불)
+:::
+
+---
+
+#### 반품 상세의 접수 방식 확인 (Pickup / Return Method)
+
+반품은 접수 경로에 따라 회수 방식이 다릅니다. 반품 상세 화면의 **Pickup** 필드와 **Return Method**로 어떤 방식으로 접수된 건인지 구분할 수 있습니다.
+
+| 접수 케이스 | Pickup | Return Method |
+|-------------|--------|---------------|
+| **강제환불(Force Refund)** | `Not Requested` | `FORCE REFUND` |
+| **Return + 픽업 미요청** | `Not Requested` | `PARCEL` |
+| **Return + 픽업 요청** | `Requested` | `PARCEL` |
+
+- **Pickup**: 회수(픽업) 지시를 보낸 건인지 여부 — `Requested` / `Not Requested`
+- **Return Method**: 회수 수단 — `PARCEL`(택배 회수) / `FORCE REFUND`(회수 없는 강제환불)
+- 강제환불 건은 반품 상세 상단에 **`FORCE REFUND`** 가 함께 표시되며, **엑셀 Export 시에도 강제환불 여부를 확인할 수 있습니다.**
+
+![pickup Info](/img/pickup_info.png)
+
+
+---
+
+#### 반품 취소
+- 회수가 완료되기 전이라면 반품을 취소할 수 있습니다.
+- 반품 취소 확정 시점에 각 연관 시스템으로 취소정보가 전송됩니다.
+- 취소 방법
+  - RETURN 탭에서 "Cancel Return" 버튼을 클릭하고 확인 시 반품이 취소됩니다.
+- 취소가능 시점
+  - PARCEL: Pending / Pickup Requested / Pickup Ongoing / Received 단계에서 취소 가능
+
+#### 교환 취소
+- 검수가 시작되기 전까지는 교환을 취소할 수 있습니다.
+- 취소 방법
+  - EXCHANGE 탭에서 "Cancel Exchange" 버튼을 클릭합니다.
+- 취소가능 시점
+  - 취소 가능 상태: Pending / Pickup Requested / Pickup Ongoing / Received
+  - Inspected 이후(검수 완료·새 상품 출고 진행)에는 취소할 수 없습니다.
+
+:::tip 취소 처리 사용시점
+WMS - OMS 간 데이터 싱크를 위해 WMS 에 전송한 데이터를 변경해야하는 경우 (오입고, 미처리, 교환-반품 전환 등...) 기존 반품,교환 정보를 취소하고 진행해야합니다.
+:::
+
+---
+
+#### 교환 입고 수기 Grading 
+  - 교환 제품이 입고되고 [Received] 상태일 때 'Inspect' 버튼 활성화
   - Inspect 클릭 시 제품 별로 Grading 처리할 수 있는 모달 노출
   - 전체 Grading 이후 Confirm 시
     - 진행 중인 교환 출고가 없다면 교환출고 자동 진행
